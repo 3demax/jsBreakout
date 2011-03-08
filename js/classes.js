@@ -17,5 +17,4 @@ function Keyboard(){
     this.isPressed = function(keyName){
         return (e.type === 'keydown' && e.which === keyName) ? true : false;
     }
-	this.set
 }
