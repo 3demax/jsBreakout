@@ -6,6 +6,7 @@
 	<script type="text/javascript" src="js/plugins/keys.js"></script>
 
 	<script type="text/javascript" src="js/main.js"></script>
+	<script type="text/javascript" src="js/classes.js"></script>
 	<script type="text/javascript">
 	function AppLoop(){
 		App.update();
@@ -15,6 +16,7 @@
 		App.load();
 		AppLoop();
 	});
+
 	</script>
 </head>
 
@@ -26,7 +28,25 @@
 		<div id="ball"></div>
 		<div id="racket"></div>
 	</div>
-
+<script type="text/javascript">
+	var kbd = new Keyboard();
+	pad = document.getElementById("racket");
+	var width = 480;
+	var step = 120;
+	padLeft = 0;
+	function movePad(keyName){
+		if(keyName === 'arrowRight' && padLeft < width){
+			padLeft += step;
+			pad.style.left = padLeft + 'px';
+		} else if (keyName === 'arrowLeft' && padLeft > 0){
+			padLeft -= step;
+			pad.style.left = padLeft +'px';
+		}
+	}
+	document.onkeydown = function(event){
+		movePad(kbd.key[event.which]);
+	}
+</script>
 </body>
 
 </html>
