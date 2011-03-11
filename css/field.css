@@ -3,7 +3,7 @@
     padding: 0px;
 }
 @font-face {
-	font-family: 'League Gothic', src: url('../img/League-Gothic.otf');
+	font-family: 'League Gothic'; src: url('../img/League-Gothic.otf');
 }
 
 body {
@@ -62,7 +62,7 @@ body {
 
 #info dl {
     margin: 0 auto;
-    width: 540px;
+    width: 600px;
     /*text-align:center;*/
 }
 
@@ -89,5 +89,5 @@ body {
 }
 
 #info #lives {
-    border-right: 0;
+    border-right-color:transparent;
 }
