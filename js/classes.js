@@ -35,8 +35,8 @@ function Mouse(){
 	this.key = {0: 'buttonLeft', 2: 'buttonRight'}
 	this.pressed = {'buttonLeft':false,'buttonRight':false}
 	this.x = function(event){
-		var width = parseFloat(document.getElementById("field").style.width);
-		document.getElementById('info').innerHTML = width;
+		/*var width = document.getElementById("field").style.width;
+		document.getElementById('info').innerHTML = width;*/
 		var x = event.clientX - (document.width-600) / 2;
 		if (x < 0) x=0;
 		if (x>480) x=480;
