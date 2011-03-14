@@ -22,6 +22,7 @@ body {
     box-shadow: inset 1px 1px 3px 0px rgba(0, 0, 0, .6);
     background: #ebcca9 url(../img/bg-darker.png) repeat left top;
     border-radius: 2px;
+    cursor:none;
 }
 
 #ball {
