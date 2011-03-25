@@ -7,10 +7,18 @@ App = {
 	},
 	
 	// this function is executed at startup
-	load : function()
+	load : function(bricks)
 	{
+		var layer = document.getElementById("bricks-layer");
+		
+		for (i = 0; i < bricks; i++) {
+			var brickCell = document.createElement("div");
+			brickCell.className = "brick";
+			var brick = document.createElement("p");
+			brickCell.appendChild(brick);
+			layer.appendChild(brickCell);
+		}
 		this.say("[Program start] " + Date.now());
-
 	},
 
 	// main game cycle
@@ -20,3 +28,6 @@ App = {
 
 	},
 };
+function shitBricks(){
+	
+}

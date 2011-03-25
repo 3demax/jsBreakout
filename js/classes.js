@@ -1,8 +1,8 @@
-/**
- * Ugly global variable (IE style) to make Keyboard.isPressed() work with only one argument.
- * Other possible explanation of this is that I am a junkie.
- */
-var e;
+var field = document.getElementById("field");
+var pad = document.getElementById("racket");
+var fieldWidth = parseFloat(window.getComputedStyle(field, null).getPropertyValue("width"));
+var padWidth = parseFloat(window.getComputedStyle(pad, null).getPropertyValue("width"));
+var width = fieldWidth - padWidth;
 
 function Keyboard(){
     this.key = {
@@ -24,26 +24,16 @@ function Keyboard(){
 		this.pressed[keyName] = false;
 	}
 }
-/*document.addEventListener('keydown', function(event){
-	kbd.setPressed(kbd.key[event.which]);
-}, false);
-document.addEventListener('keyup', function(event){
-	kbd.setReleased(kbd.key[event.which]);
-},false);
-*/
+
 function Mouse(){
 	this.key = {0: 'buttonLeft', 2: 'buttonRight'}
 	this.pressed = {'buttonLeft':false,'buttonRight':false}
 	this.x = function(event){
-		/*var width = document.getElementById("field").style.width;
-		document.getElementById('info').innerHTML = width;*/
-		var x = event.clientX - (document.width-600) / 2;
+		var x = event.clientX - (document.body.clientWidth-fieldWidth) / 2;
 		if (x < 0) x=0;
-		if (x>480) x=480;
+		if (x>width) x=width;
 		return x; 
 	}
-	this.y = function(event){
-		//return this.key['y']
-	}
 }
+
 Mouse.prototype = new Keyboard();

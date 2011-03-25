@@ -1,6 +1,7 @@
+<!DOCTYPE html>
 <html>
-
 <head>
+	<title>jsBreakout</title>
 	<link rel="stylesheet" href="css/field.css" type="text/css" />
 	<script type="text/javascript" src="js/right.js"></script>
 	<script type="text/javascript" src="js/plugins/keys.js"></script>
@@ -11,42 +12,29 @@
 		setTimeout(AppLoop, App.cycleDuration);
 	}
 	$(document).on('ready', function() {
-		App.load();
+		App.load(30);
 		AppLoop();
 	});
-
 	</script>
 </head>
 
 <body>
 	<div id="wrapper">
-	    <div id="field">
-	        <div id="ball">
-	        </div>
-	        <div id="racket" style="left:200px">
-	        </div>
-	    </div>
+    <div id="field">
+	    <div id="bricks-layer"></div>
+        <div id="ball"></div>
+		<div id="racket"></div>
+    </div>
 	    <div id="info">
-			<!--<dl>
-				<span id="level">
-					<dt>level:</dt>
-					<dd>1</dd>
-				</span>
-				<span id="points">
-					<dt>points:</dt>
-
-					<dd>24</dd>
-				</span>
-				<span id="lives">
-					<dt>lives:</dt>
-					<dd>3/5</dd>
-				</span>
-			</dl>-->
+			<dl>
+				<dt>level:</dt><dd>1</dd>
+				<dt>points:</dt><dd>24</dd>
+				<dt>lives:</dt><dd id="lives">3/5</dd>
+			</dl>
 
 		</div>
 	</div>
-	<!--<script type="text/javascript" src="js/classes.js"></script>-->
+	<script type="text/javascript" src="js/classes.js"></script>
 	<script type="text/javascript" src="js/stdin.js"></script>
 </body>
-
 </html>

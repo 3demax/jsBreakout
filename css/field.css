@@ -1,3 +1,4 @@
+@import "http://fonts.googleapis.com/css?family=PT+Serif:regular,italic,bold,bolditalic";
 * {
     margin: 0px;
     padding: 0px;
@@ -5,89 +6,108 @@
 @font-face {
 	font-family: 'League Gothic'; src: url('../img/League-Gothic.otf');
 }
-
 body {
-    background: #ebcca9 url(../img/bg-beige.png) repeat left top;
+    background: #db9b66 url(../img/bg-beige.png) repeat left top;
 }
-
 #wrapper {
     border-top: 10px solid black;
+	
 }
-
 #field {
     width: 600px;
     height: 480px;
     margin: 25px auto;
     overflow: hidden;
     box-shadow: inset 1px 1px 3px 0px rgba(0, 0, 0, .6);
-    background: #ebcca9 url(../img/bg-darker.png) repeat left top;
+    background: #87542e url(../img/bg-darker.png) repeat left top;
     border-radius: 2px;
 }
-
 #ball {
     width: 40px;
     height: 40px;
     position: relative;
-    /*top:200px;
-     left:200px;*/
+	top:150px;
+	left:100px;
     border-radius: 20px;
-    background: #e00;
-    box-shadow: 1px 1px 0 0 #333;
+    background: #e20;
+	//background-image:-moz-radial-gradient(70% 70%, rgba(0, 0, 0, .15), transparent );	
+    box-shadow: 2px 2px 0 1px #c00, 2px 2px 20px rgba(0, 0, 0, .6);
     -webkit-transition: all ls linear;
     -moz-transition: all ls linear;
     -o-transition: all ls linear;
     transition: all ls linear;
 }
-
+#bricks-layer{
+	margin-bottom:-100%;
+	height:480px;
+	width: 600px;
+	position: absolute;
+	overflow:hidden;
+	border-radius:2px;
+	
+}
+.brick{
+	width:60px;
+	height:22px;
+	float: left;
+	background-color:#dbae66;
+}
+.brick:empty{
+	background-color: transparent;
+}
+.brick p{
+	font:50%/2.4 sans-serif;
+	text-align: center;
+	color:#eee;
+	background-color: #a33722;/* url('../img/bg-brick.png') repeat left top;*/
+	border:1px solid #b63d26;
+    box-shadow: 2px 2px 0 1px #882e1c, 3px 3px 3px rgba(0, 0, 0, .6);
+	width:58px;
+	height:20px;
+}
 #racket {
     width: 120px;
-    height: 22px;
+    height: 20px;
     position: relative;
-    top: 422px;
+    top: 420px;
     left: 200px;
-    border-radius: 3px 3px 0 0;
-    box-shadow: 2px 2px 0 0 #333;
+    border-radius: 2px 2px 0 0;
+    box-shadow: 3px 1px 0 0px #444;/*, 3px 3px 10px rgba(0, 0, 0, .6);*/
     background: #666;
     transition: all .2s linear;
     -webkit-transition: all .2s linear;
     -moz-transition: all .2s linear;
     -o-transition: all .2s linear;
 }
-
 #info {
     background: #ebcca9 url(../img/bg-brown.png) repeat left top;
     height: 88pt;
     padding: 10px 30px;
 }
-
 #info dl {
     margin: 0 auto;
     width: 600px;
-    /*text-align:center;*/
+    text-align:center;
 }
-
+#info dt, #info dd{
+	float:left;
+	width:177px;
+	padding: 0 10px;
+}
 #info dd {
     font: 72pt / 1 "League Gothic";
     color: #67a7db;
-    text-shadow: 2px 2px /*#db6790*/ #eda6c6;
-    clear: left;
+    text-shadow: 2px 2px #db9b66/*#db6790 #eda6c6*/;
+    clear: none;
+	padding-top:16pt;
+	border-right: 3px dotted black;
 }
-
 #info dt {
-    color: #ebcca9;
-    font: 16pt / 1 serif;
-    text-transform: capitalize;
+    color: #DB9B66;
+    font: 18pt / 1 "League Gothic", Georgia, serif;
+    text-transform: uppercase;
+	margin-right:-100%;
 }
-
-#info span {
-    float: left;
-    /*width:127px;
-     margin-right:50px;*/
-    width: 177px;
-    text-align: center;
-    border-right: 3px dotted black;
-}
-
 #info #lives {
     border-right-color:transparent;
 }
