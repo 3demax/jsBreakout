@@ -1,4 +1,3 @@
-@import "http://fonts.googleapis.com/css?family=PT+Serif:regular,italic,bold,bolditalic";
 * {
     margin: 0px;
     padding: 0px;
@@ -10,7 +9,7 @@ body {
     background: #db9b66 url(../img/bg-beige.png) repeat left top;
 }
 #wrapper {
-    border-top: 10px solid black;
+    /*border-top: 10px solid black;*/
 	
 }
 #field {
@@ -21,7 +20,6 @@ body {
     box-shadow: inset 1px 1px 3px 0px rgba(0, 0, 0, .6);
     background: #87542e url(../img/bg-darker.png) repeat left top;
     border-radius: 2px;
-    cursor:none;
 }
 #ball {
     width: 40px;
@@ -31,7 +29,6 @@ body {
 	left:100px;
     border-radius: 20px;
     background: #e20;
-	//background-image:-moz-radial-gradient(70% 70%, rgba(0, 0, 0, .15), transparent );	
     box-shadow: 2px 2px 0 1px #c00, 2px 2px 20px rgba(0, 0, 0, .6);
     -webkit-transition: all ls linear;
     -moz-transition: all ls linear;

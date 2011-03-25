@@ -6,16 +6,15 @@ var width = fieldWidth - padWidth;
 
 function Keyboard(){
     this.key = {
-        37: 'arrowLeft',
-        39: 'arrowRight'
+        37: 'left',
+        39: 'right'
     }
 	this.pressed = {
-		'arrowLeft': false,
-		'arrowRight': false
+		'left': false,
+		'light': false
 	}
     this.isPressed = function(keyName){
 		return this.pressed[keyName];
-//        return (event.type === 'keydown' && event.which === keyName) ? true : false;
     }
 	this.setPressed = function(keyName){
 		this.pressed[keyName] = true;
@@ -26,8 +25,6 @@ function Keyboard(){
 }
 
 function Mouse(){
-	this.key = {0: 'buttonLeft', 2: 'buttonRight'}
-	this.pressed = {'buttonLeft':false,'buttonRight':false}
 	this.x = function(event){
 		var x = event.clientX - (document.body.clientWidth-fieldWidth) / 2;
 		if (x < 0) x=0;
