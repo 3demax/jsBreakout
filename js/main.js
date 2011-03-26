@@ -7,35 +7,40 @@ App = {
 	},
 	
 	// this function is executed at startup
-	load : function(bricks)
+	load : function()
 	{
-		var layer = document.getElementById("bricks-layer");
-		
-		for (i = 0; i < bricks; i++) {
-			var brickCell = document.createElement("div");
-			brickCell.className = "brick";
-			var brick = document.createElement("p");
-			brickCell.appendChild(brick);
-			layer.appendChild(brickCell);
+		bricks={}
+		for ( i = 0; i < 20; i++ ) {
+			bricks[i] = new Brick(i);
+			//layer.removeChild(bricks[i]);
+			//document.getElementById("info").innerHTML += bricks[i].id;
 		}
-		
 		kbd = new Keyboard();
 		ms = new Mouse();
 		
-		document.addEventListener('keydown',function(event){
-			kbd.setPressed(kbd.key[event.which]);
-		},false);
-		document.addEventListener('keyup',function(event){
-			kbd.setReleased(kbd.key[event.which]);
+		document.addEventListener( 'keydown', function(event){            
+            if (!kbd.isPressed(kbd.key[event.which])) {
+                kbd.setPressed(kbd.key[event.which]);
+            }
 		},false);
 		
-		this.say("[Program start] " + Date.now());
+		document.addEventListener( 'keyup', function(event){
+			if (kbd.isPressed(kbd.key[event.which])) {
+				kbd.setReleased(kbd.key[event.which]);
+			}
+		},false);
+		
+		document.addEventListener( 'mousemove', function(event){
+		    var e = event;
+		    if (ms.x(e) >= 0) 
+		        pad.style.left = ms.x(e) + 'px';
+		    padLeft = ms.x(e);
+		},false);
 	},
 
 	// main game cycle
 	update : function()
 	{
-		this.say("[Infinite cycle] ");
 		movePad();
 	},
 };
