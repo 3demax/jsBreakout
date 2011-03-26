@@ -1,3 +1,5 @@
+function fillRow(type){
+}
 App = {
 	debugMode : 1,
 	cycleDuration: 200, //in miliseconds
@@ -10,17 +12,15 @@ App = {
 	load : function()
 	{
 		bricks={}
-		for ( i = 0; i < 40; i++ ) {
-			bricks[i] = new Brick(i);
-			//layer.removeChild(bricks[i]);
-			//document.getElementById("info").innerHTML += bricks[i].id;
-		}
+		for ( id = 0; id < 10; id++ ) bricks[id] = new Brick(id, "p7");
+		for ( id = 10; id < 20; id++ ) bricks[id] = new Brick(id, "p5");
+		for ( id = 20; id < 30; id++ ) bricks[id] = new Brick(id, "p3");
 		kbd = new Keyboard();
 		ms = new Mouse();
 		
-		var level = document.getElementById("level");
+		level = document.getElementById("level");
 		points = document.getElementById("points");
-		var lives = document.getElementById("lives");
+		lives = document.getElementById("lives");
 		
 		document.addEventListener( 'keydown', function(event){            
             if (!kbd.isPressed(kbd.key[event.which])) {
@@ -46,7 +46,8 @@ App = {
 	update : function()
 	{
 		movePad();
-		points.innerText = App.state.points;
+		points.innerHTML = App.state.points;
+		lives.innerHTML = App.state.lives;
 	},
 	state: {
 		level: 1,

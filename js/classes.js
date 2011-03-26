@@ -34,18 +34,25 @@ function Mouse(){
 	}
 }
 
-function Brick(name){
+function Brick(id, type){
     var brickCell = document.createElement("div");
-    brickCell.className = "brick";
-	brickCell.id = name;
-	this.id=name;
+    brickCell.className = "brick " + type;
+	brickCell.id = id;
+	this.id=id;
     var brick = document.createElement("p");
     brickCell.appendChild(brick);
     layer.appendChild(brickCell);
 	brick.hit = function(){
 		brickCell.innerHTML = "";
 		brickCell.id="";
-		App.state.points +=1;
+		switch (type){
+			case "p3": App.state.points +=3
+			break 
+			case "p5": App.state.points +=5
+			break
+			case "p7": App.state.points +=7
+			break
+		}
 	}
 	brick.onclick = function(){
 		brick.hit();
