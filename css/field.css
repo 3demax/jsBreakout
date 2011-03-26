@@ -9,8 +9,7 @@ body {
     background: #db9b66 url(../img/bg-beige.png) repeat left top;
 }
 #wrapper {
-    /*border-top: 10px solid black;*/
-	
+    /*border-top: 10px solid black;*/	
 }
 #field {
     width: 600px;

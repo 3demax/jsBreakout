@@ -10,13 +10,17 @@ App = {
 	load : function()
 	{
 		bricks={}
-		for ( i = 0; i < 20; i++ ) {
+		for ( i = 0; i < 40; i++ ) {
 			bricks[i] = new Brick(i);
 			//layer.removeChild(bricks[i]);
 			//document.getElementById("info").innerHTML += bricks[i].id;
 		}
 		kbd = new Keyboard();
 		ms = new Mouse();
+		
+		var level = document.getElementById("level");
+		points = document.getElementById("points");
+		var lives = document.getElementById("lives");
 		
 		document.addEventListener( 'keydown', function(event){            
             if (!kbd.isPressed(kbd.key[event.which])) {
@@ -42,5 +46,11 @@ App = {
 	update : function()
 	{
 		movePad();
+		points.innerText = App.state.points;
 	},
+	state: {
+		level: 1,
+		points: 0,
+		lives: 5
+	}
 };

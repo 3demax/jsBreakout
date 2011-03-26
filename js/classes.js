@@ -42,7 +42,12 @@ function Brick(name){
     var brick = document.createElement("p");
     brickCell.appendChild(brick);
     layer.appendChild(brickCell);
-	this.remove = function(){
-		layer.removeChild(this);
+	brick.hit = function(){
+		brickCell.innerHTML = "";
+		brickCell.id="";
+		App.state.points +=1;
+	}
+	brick.onclick = function(){
+		brick.hit();
 	}
 }
