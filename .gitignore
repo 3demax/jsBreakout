@@ -1,1 +1,3 @@
 backlog.*
+artifacts/
+.snaked*
