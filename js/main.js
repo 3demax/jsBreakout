@@ -45,6 +45,7 @@ App = {
 		points.innerHTML = App.state.points;
 		lives.innerHTML = App.state.lives;
 		//ball.move();
+		physics.step();
 	},
 	state: {
 		level: 1,

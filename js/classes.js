@@ -106,7 +106,7 @@ function Brick(id, type){
 function Ball()
 {
 	this.x = 50; this.y = 50;
-	this.speed = {x : 10, y : 30};
+	this.speed = {x : 10, y : 15};
 	this.element = document.getElementById("ball");
 	var element = this.element;
 	this.left = parseFloat(window.getComputedStyle(element, null).getPropertyValue("left"));
@@ -114,5 +114,5 @@ function Ball()
 	this.width = parseFloat(window.getComputedStyle(element, null).getPropertyValue("width"));
 	this.height = parseFloat(window.getComputedStyle(element, null).getPropertyValue("height"));
 
-
+//		this.move =  function () {}
 }

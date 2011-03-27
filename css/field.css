@@ -24,13 +24,13 @@ body {
 	border-bottom:1px solid rgba(255,255,255,.3);
 }
 #ball {
-    width: 38px;
-    height: 38px;
+    width: 20px;
+    height: 20px;
 	border:1px solid rgba(255,255,255, .05);
     position: relative;
-	top:150px;
-	left:100px;
-    border-radius: 20px;
+	top:0px;
+	left:0px;
+    border-radius: 10px;
     background-color: #d20;
     /*box-shadow: 2px 2px 0 1px #c00, 2px 2px 20px rgba(0, 0, 0, .6);*/
 	box-shadow: 1px 1px #c00, 2px 2px #c00, 3px 2px #c00, 3px 3px 20px rgba(0, 0, 0, .6);
@@ -62,6 +62,7 @@ body {
 	z-index:1;
 	overflow:hidden;
 	border-radius:2px;
+	display: none;
 }
 .brick{
 	width:60px;
