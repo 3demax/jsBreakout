@@ -46,12 +46,12 @@ body {
 	z-index:2;
 	
 }
-#display p{
-	font: 72pt / 1 "League Gothic";
+#display *{
+	font: 24pt / 1 "League Gothic";
     color: #ddd;
     text-shadow: 2px 2px #999;
 	text-align: center;
-	margin-top:25%;
+	/*margin-top:25%;*/
 }
 #bricks-layer{
 	margin-bottom:-100%;
@@ -140,4 +140,14 @@ body {
 }
 #info #lives {
     border-right-color:transparent;
+}
+#options a, #options button{
+	display:block;
+	clear: right;
+	float:right;
+	font:14pt/1.3 "League Gothic", sans-serif;
+	padding: 2px;
+}
+#options a{
+	color: #67a7db;
 }

@@ -11,13 +11,14 @@ App = {
 	{
 		field = new Field();
 		pad = new Pad();
+		display = document.getElementById("display");
 		
 		field.fill();
 		if (App.debugMode === 0) App.countdown();
 
 		kbd = new Keyboard();
 		ms = new Mouse();
-		
+		App.requestName();
 		level = document.getElementById("level");
 		points = document.getElementById("points");
 		lives = document.getElementById("lives");
@@ -46,10 +47,17 @@ App = {
 	state: {
 		level: 1,
 		points: 0,
-		lives: 5
+		lives: 5,
+		record: function(name){
+			if (!name) {
+				display.innerHTML = '<form><input id="name" placeholder="Enter your name"></form>';
+			}
+				var record = {"time":new Date(), "name": name, "points": App.state.points, "lives": App.state.lives};
+				window.localStorage.setItem(name, record);
+		},
+		
 	},
 	countdown: function(){
-		var display = document.getElementById("display");
 		var shots = ["3", "2", "1", "GO", ""];
 		var i = 0;
 		function post(){
@@ -62,5 +70,7 @@ App = {
 			}, 1000);
 		}
 		post();
+	},
+	requestName: function(){
 	}
 };

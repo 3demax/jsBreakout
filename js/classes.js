@@ -37,15 +37,6 @@ function Field(){
 		for ( id = 0; id < 10; id++ ) bricks[id] = new Brick(id, "p7");
 		for ( id = 10; id < 20; id++ ) bricks[id] = new Brick(id, "p5");
 		for ( id = 20; id < 30; id++ ) bricks[id] = new Brick(id, "p3");
-		//TEMP
-		bricks[1].hit();
-		bricks[2].hit();
-		bricks[3].hit();
-		bricks[11].hit();
-		bricks[13].hit();
-		bricks[21].hit();
-		bricks[22].hit();
-		bricks[23].hit();
 	}
 }
 
