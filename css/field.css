@@ -16,73 +16,94 @@ body {
     height: 480px;
     margin: 25px auto;
     overflow: hidden;
-    box-shadow: inset 1px 1px 3px 0px rgba(0, 0, 0, .6);
     background: #87542e url(../img/bg-darker.png) repeat left top;
+    box-shadow: inset 1px 1px 3px rgba(0, 0, 0, .3)/*,
+				inset 0px -2px #87542e,
+				inset 0px -3px rgba(255,255,255,.15)*/;
     border-radius: 2px;
+	border-bottom:1px solid rgba(255,255,255,.3);
 }
 #ball {
-    width: 40px;
-    height: 40px;
+    width: 38px;
+    height: 38px;
+	border:1px solid rgba(255,255,255, .05);
     position: relative;
 	top:150px;
 	left:100px;
     border-radius: 20px;
-    background: #e20;
-    box-shadow: 2px 2px 0 1px #c00, 2px 2px 20px rgba(0, 0, 0, .6);
-    -webkit-transition: all ls linear;
-    -moz-transition: all ls linear;
-    -o-transition: all ls linear;
-    transition: all ls linear;
+    background-color: #d20;
+    /*box-shadow: 2px 2px 0 1px #c00, 2px 2px 20px rgba(0, 0, 0, .6);*/
+	box-shadow: 1px 1px #c00, 2px 2px #c00, 3px 2px #c00, 3px 3px 20px rgba(0, 0, 0, .6);
+}
+#display{
+    box-shadow: inset 0 0 4px rgba(0, 0, 0, .4);
+	border-radius:3px;
+	height: inherit;
+	width: inherit;
+	padding: auto 0;
+	position: absolute;
+	top:25px;;
+	z-index:2;
+	
+}
+#display p{
+	font: 72pt / 1 "League Gothic";
+    color: #ddd;
+    text-shadow: 2px 2px #999;
+	text-align: center;
+	margin-top:25%;
 }
 #bricks-layer{
 	margin-bottom:-100%;
-	height:480px;
-	width: 600px;
+	/*padding:0px 5px 0 4px;*/
+	height: inherit;
+	width: inherit;
 	position: absolute;
+	z-index:1;
 	overflow:hidden;
 	border-radius:2px;
-	
 }
 .brick{
 	width:60px;
 	height:22px;
 	float: left;
-	/*background-color:#dbae66;*/
 }
-.brick:empty{
-	/*background-color: transparent;*/
-}
+
 .brick p{
 	font:50%/2.4 sans-serif;
 	text-align: center;
 	color:#eee;
 	width:58px;
 	height:20px;
+	border:1px  solid rgba(255,255,255,.05);
 }
 .p3 p{
 	background-color: #a33722;
-	border:1px solid #b63d26;
-    box-shadow: 2px 2px 0 1px #882e1c, 3px 3px 3px rgba(0, 0, 0, .6);
+    box-shadow: 1px 1px #882e1c, 2px 2px #882e1c, 3px 3px #882e1c, 3px 3px 4px rgba(0, 0, 0, .6);
 }
 .p7 p{
-	background-color: #c06c46;
-	border:1px solid #cf744a;
-    box-shadow: 2px 2px 0 1px #a35c3b, 3px 3px 3px rgba(0, 0, 0, .6);
+	background-color: #c66b43/*c06c46*/;
+    box-shadow: 1px 1px #ab5c3a, 2px 2px #ab5c3a/*a35c3b*/, 3px 3px #ab5c3a, 3px 3px 4px rgba(0, 0, 0, .6);
 }
 .p5 p{
-	background-color: #db9b66;
-	border:1px solid #eba66e;
-    box-shadow: 2px 2px 0 1px #bf875a, 3px 3px 3px rgba(0, 0, 0, .6);
+	background-color: #EDA568;
+    box-shadow: 1px 1px #D1915C, 2px 2px #D1915C, 3px 3px #D1915C, 3px 3px 4px rgba(0, 0, 0, .6);
 }
 #racket {
     width: 120px;
     height: 20px;
     position: relative;
-    top: 420px;
+    top: 423px;
     left: 200px;
-    border-radius: 2px 2px 0 0;
-    box-shadow: 3px 1px 0 0px #444;/*, 3px 3px 10px rgba(0, 0, 0, .6);*/
-    background: #666;
+    border-radius: 5px 5px 0 0;
+	border: 1px solid rgba(255,255,255,.05);
+    box-shadow: 1px 1px #707070,
+				2px 1px #707070,
+				3px 2px #707070,
+				2px 2px 0px rgba(0, 0, 0, .6);
+    background: #888;
+}
+#ball, #racket{
     transition: all .2s linear;
     -webkit-transition: all .2s linear;
     -moz-transition: all .2s linear;
@@ -106,7 +127,7 @@ body {
 #info dd {
     font: 72pt / 1 "League Gothic";
     color: #67a7db;
-    text-shadow: 2px 2px #db9b66/*#db6790 #eda6c6*/;
+    text-shadow: 2px -2px #db9b66/*#db6790 #eda6c6*/;
     clear: none;
 	padding-top:16pt;
 	border-right: 3px dotted black;
