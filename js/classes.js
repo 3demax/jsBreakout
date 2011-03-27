@@ -20,11 +20,15 @@ function Keyboard(){
 }
 
 function Mouse(){
-	this.x = function( event ){
+	this.convertX = function( event ){
 		var x = event.clientX - ( document.body.clientWidth - field.width ) / 2;
 		if ( x < 0 ) x = 0;
 		if ( x > pad.path ) x = pad.path;
+		this.x = x;
 		return x; 
+	}
+	this.setX = function (pos){
+		this.x = pos;
 	}
 }
 
@@ -41,6 +45,8 @@ function Field(){
 }
 
 function Pad(){
+	this.speed.maximum = 20;
+	this.x = 0;
 	var racket = document.getElementById("racket");
 	this.width = parseFloat(window.getComputedStyle(racket, null).getPropertyValue("width"));
 	this.path = field.width - this.width;
@@ -49,23 +55,24 @@ function Pad(){
 	racket.style.left = window.getComputedStyle( racket, null ).getPropertyValue( "left" );
 
 	this.move = function(x){
-	    if ( kbd.isPressed( 'right' ) ) {
-	        if ( this.left < this.path ) {
-	            ( ( this.path - this.left ) < step ) ? step = this.path - this.left : step = this.width;
-	            this.left += step;
-	        } else if ( this.left > this.path ) {
-	            this.left = this.path;
-	        }
-	    } else if ( kbd.isPressed( 'left' ) ) {
-	        if ( this.left > 0 ) {
-	            ( this.left < step ) ? step = this.left : step = this.width;
-	            this.left -= step;
-	        }
-	        else if ( this.left < 0 ) {
-                this.left = 0;
-            }
-        }
+//	    if ( kbd.isPressed( 'right' ) ) {
+//	        if ( this.left < this.path ) {
+//	            ( ( this.path - this.left ) < step ) ? step = this.path - this.left : step = this.width;
+//	            this.left += step;
+//	        } else if ( this.left > this.path ) {
+//	            this.left = this.path;
+//	        }
+//	    } else if ( kbd.isPressed( 'left' ) ) {
+//	        if ( this.left > 0 ) {
+//	            ( this.left < step ) ? step = this.left : step = this.width;
+//	            this.left -= step;
+//	        }
+//	        else if ( this.left < 0 ) {
+//                this.left = 0;
+//            }
+//        }
 		racket.style.left = this.left + 'px';
+		
 	}
 }
 

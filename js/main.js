@@ -1,5 +1,5 @@
 App = {
-	debugMode : 1,
+	debugMode : 0,
 	cycleDuration: 200, //in miliseconds
 	say : function(info)
 	{
@@ -24,15 +24,16 @@ App = {
 		lives = document.getElementById("lives");
 		
 		document.addEventListener( 'keydown', function(event){            
-            if (!kbd.isPressed(kbd.key[event.which])) kbd.setPressed(kbd.key[event.which]);
+            kbd.setPressed(kbd.key[event.which]);
 		},false);
 		
 		document.addEventListener( 'keyup', function(event){
-			if (kbd.isPressed(kbd.key[event.which])) kbd.setReleased(kbd.key[event.which]);
+			kbd.setReleased(kbd.key[event.which]);
 		},false);
 		
 		document.addEventListener( 'mousemove', function(event){
-			pad.left = ms.x(event);
+			//pad.left = ms.x(event);
+			ms.setX(ms.convertX(event))
 		},false);
 	},
 
