@@ -1,5 +1,5 @@
 App = {
-	debugMode : 0,
+	debugMode : 1,
 	cycleDuration: 200, //in miliseconds
 	say : function(info)
 	{
@@ -11,6 +11,7 @@ App = {
 	{
 		field = new Field();
 		pad = new Pad();
+		ball = new Ball();
 		
 		field.fill();
 		if (App.debugMode === 0) App.countdown();
@@ -43,6 +44,7 @@ App = {
 		level.innerHTML = App.state.level;
 		points.innerHTML = App.state.points;
 		lives.innerHTML = App.state.lives;
+		//ball.move();
 	},
 	state: {
 		level: 1,
