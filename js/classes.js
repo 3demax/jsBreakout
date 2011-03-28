@@ -45,7 +45,7 @@ function Field(){
 }
 
 function Pad(){
-	this.speed = 300;
+	this.speed = 600;
 	this.x = 0;
 	var racket = document.getElementById("racket");
 	this.width = parseFloat(window.getComputedStyle(racket, null).getPropertyValue("width"));

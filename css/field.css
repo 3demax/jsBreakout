@@ -8,18 +8,13 @@
 body {
     background: #db9b66 url(../img/bg-beige.png) repeat left top;
 }
-#wrapper {
-    /*border-top: 10px solid black;*/	
-}
 #field {
     width: 600px;
     height: 480px;
     margin: 25px auto;
     overflow: hidden;
     background: #87542e url(../img/bg-darker.png) repeat left top;
-    box-shadow: inset 1px 1px 3px rgba(0, 0, 0, .3)/*,
-				inset 0px -2px #87542e,
-				inset 0px -3px rgba(255,255,255,.15)*/;
+    box-shadow: inset 1px 1px 3px rgba(0, 0, 0, .3);
     border-radius: 2px;
 	border-bottom:1px solid rgba(255,255,255,.3);
 }
@@ -32,7 +27,6 @@ body {
 	left:100px;
     border-radius: 20px;
     background-color: #d20;
-    /*box-shadow: 2px 2px 0 1px #c00, 2px 2px 20px rgba(0, 0, 0, .6);*/
 	box-shadow: 1px 1px #c00, 2px 2px #c00, 3px 2px #c00, 3px 3px 20px rgba(0, 0, 0, .6);
 }
 #display{
@@ -66,7 +60,6 @@ body {
 	height:22px;
 	float: left;
 }
-
 .brick p{
 	font:50%/2.4 sans-serif;
 	text-align: center;
