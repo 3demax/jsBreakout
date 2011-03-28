@@ -92,7 +92,9 @@ physics = {
 			else
 			{
 				App.say("You loose.")
-				App.running = false;
+				App.state.lives --;
+				lives.innerHTML = App.state.lives;
+				App.stop();
 			}
 			
 //			ppy = field.height-ball.height-pad.height+5
@@ -105,9 +107,6 @@ physics = {
 		ball.element.style.top = ball.y + 'px';
 		App.say("px=" + ball.px + " py=" + ball.py + "\n ==== end ====");
 
-
-
-		
 		
 	}
 }

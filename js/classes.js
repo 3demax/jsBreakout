@@ -83,7 +83,8 @@ function Pad(){
 		racket.style.left = this.left + 'px';
 	}
 	this.speed.x = move;
-	
+	this.set = function(x) 
+	{ racket.style.left = x + 'px' }
 }
 
 function Brick(id, type){
@@ -139,5 +140,11 @@ function Ball()
 	this.top = parseFloat(window.getComputedStyle(element, null).getPropertyValue("top"));
 	this.width = parseFloat(window.getComputedStyle(element, null).getPropertyValue("width"));
 	this.height = parseFloat(window.getComputedStyle(element, null).getPropertyValue("height"));
+	this.set = function(x,y){
+		ball.x = x;
+		ball.y = y;
+		ball.element.style.left = x + 'px';
+		ball.element.style.top = y + 'px';
+	}
 
 }
