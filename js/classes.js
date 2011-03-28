@@ -46,16 +46,13 @@ function Field(){
 }
 
 function Pad(){
-<<<<<<< HEAD
-	this.speed = 600;
-=======
-	this.speed = { maximum: 20, x: 0}
->>>>>>> 6bb6f7d49809f5e6c58534d634e78931191663f5
+	//this.speed = 600;
+	this.speed = { maximum: 300, x: 0}
 	this.x = 0;
 	var racket = document.getElementById("racket");
 	this.width = parseFloat(window.getComputedStyle(racket, null).getPropertyValue("width"));
 	this.path = field.width - this.width;
-	var step = this.speed * App.cycleDuration / 1000;
+	var step = this.speed.maximum * App.cycleDuration / 1000;
 	var move = step;
 	this.left = ( this.path - this.width ) / 2;
 	racket.style.left = window.getComputedStyle( racket, null ).getPropertyValue( "left" );
@@ -112,7 +109,6 @@ function Brick(id, type){
 		bricks[this.parentNode.id].hit();
 	}
 }
-<<<<<<< HEAD
 function Display(){
 	this.countdown = function(){
 		var shots = ["3", "2", "1", "GO", ""];
@@ -130,9 +126,7 @@ function Display(){
 		}
 		post();
 	}
-	
-=======
-
+}
 function Ball()
 {
 	this.x = 50; this.y = 50;
@@ -143,7 +137,4 @@ function Ball()
 	this.top = parseFloat(window.getComputedStyle(element, null).getPropertyValue("top"));
 	this.width = parseFloat(window.getComputedStyle(element, null).getPropertyValue("width"));
 	this.height = parseFloat(window.getComputedStyle(element, null).getPropertyValue("height"));
-
-
->>>>>>> 6bb6f7d49809f5e6c58534d634e78931191663f5
 }
