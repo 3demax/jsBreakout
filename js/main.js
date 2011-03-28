@@ -20,7 +20,7 @@ App = {
 		field.fill();
 		if (App.debugMode === 0) display.countdown();
 
-		level = document.getElementById("level");
+		//level = document.getElementById("level");
 		points = document.getElementById("points");
 		lives = document.getElementById("lives");
 		document.addEventListener( 'keydown', function(event){
@@ -43,13 +43,13 @@ App = {
 	update : function()
 	{
 		pad.move();
-		level.innerHTML = App.state.level;
+		//level.innerHTML = App.state.level;
 		points.innerHTML = App.state.points;
 		lives.innerHTML = App.state.lives;
 		//ball.move();
 	},
 	state: {
-		level: 1,
+		//level: 1,
 		points: 0,
 		lives: 5,
 	}

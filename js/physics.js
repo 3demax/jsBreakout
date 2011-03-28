@@ -17,7 +17,6 @@ function sgn(a)
 	a>0 ? a=1 : ( a<0 ? a=-1 : a=0 );
 	return a;
 }
-
 function mirror(x1, y1, x2, y2, xx, xy, dx, dy)
 {
 	var ddx = dx - 2*(dx - xx)*sgn(y2 - y1)
