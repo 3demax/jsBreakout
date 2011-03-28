@@ -51,6 +51,7 @@ function Pad(){
 	this.x = 0;
 	var racket = document.getElementById("racket");
 	this.width = parseFloat(window.getComputedStyle(racket, null).getPropertyValue("width"));
+	this.height = parseFloat(window.getComputedStyle(racket, null).getPropertyValue("height"));
 	this.path = field.width - this.width;
 	var step = this.speed.maximum * App.cycleDuration / 1000;
 	var move = step;
@@ -81,6 +82,7 @@ function Pad(){
         }
 		racket.style.left = this.left + 'px';
 	}
+	this.speed.x = move;
 	
 }
 
@@ -130,7 +132,7 @@ function Display(){
 function Ball()
 {
 	this.x = 50; this.y = 50;
-	this.speed = {x : 15, y : 25};
+	this.speed = {x : 15, y :30};
 	this.element = document.getElementById("ball");
 	var element = this.element;
 	this.left = parseFloat(window.getComputedStyle(element, null).getPropertyValue("left"));

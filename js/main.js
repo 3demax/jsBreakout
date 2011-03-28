@@ -1,6 +1,7 @@
 App = {
-	debugMode : 1,
+	debugMode : true,
 	cycleDuration: 200, //in miliseconds
+	running: true,
 	say : function(info)
 	{
 		if(this.debugMode) {console.log(info);} ;
