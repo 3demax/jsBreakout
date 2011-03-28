@@ -15,6 +15,7 @@ App = {
 		field = new Field();
 		pad = new Pad();
 		display = new Display();
+		ball = new Ball();
 		
 		field.fill();
 		if (App.debugMode === 0) display.countdown();
@@ -45,6 +46,7 @@ App = {
 		level.innerHTML = App.state.level;
 		points.innerHTML = App.state.points;
 		lives.innerHTML = App.state.lives;
+		//ball.move();
 	},
 	state: {
 		level: 1,
