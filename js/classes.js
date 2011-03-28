@@ -23,12 +23,12 @@ function Mouse(){
 	this.convertX = function( event ){
 		var x = event.clientX - ( document.body.clientWidth - field.width ) / 2;
 		if ( x < 0 ) x = 0;
-		if ( x > pad.path ) x = pad.path;
+		if ( x > field.width ) x = field.width;
 		this.x = x;
 		return x; 
 	}
-	this.setX = function (pos){
-		this.x = pos;
+	this.setShift = function(){
+		this.shift = this.x - pad.left;
 	}
 }
 
@@ -46,35 +46,42 @@ function Field(){
 }
 
 function Pad(){
-	this.speed = { maximum: 20, x: 0}
+	//this.speed = 600;
+	this.speed = { maximum: 300, x: 0}
 	this.x = 0;
 	var racket = document.getElementById("racket");
 	this.width = parseFloat(window.getComputedStyle(racket, null).getPropertyValue("width"));
 	this.path = field.width - this.width;
-	var step = this.width;
+	var step = this.speed.maximum * App.cycleDuration / 1000;
+	var move = step;
 	this.left = ( this.path - this.width ) / 2;
 	racket.style.left = window.getComputedStyle( racket, null ).getPropertyValue( "left" );
 
-	this.move = function(x){
-//	    if ( kbd.isPressed( 'right' ) ) {
-//	        if ( this.left < this.path ) {
-//	            ( ( this.path - this.left ) < step ) ? step = this.path - this.left : step = this.width;
-//	            this.left += step;
-//	        } else if ( this.left > this.path ) {
-//	            this.left = this.path;
-//	        }
-//	    } else if ( kbd.isPressed( 'left' ) ) {
-//	        if ( this.left > 0 ) {
-//	            ( this.left < step ) ? step = this.left : step = this.width;
-//	            this.left -= step;
-//	        }
-//	        else if ( this.left < 0 ) {
-//                this.left = 0;
-//            }
-//        }
+	this.move = function(){
+ 		if ( kbd.isPressed( 'right' ) || ms.shift > 0 && !kbd.isPressed('left')) {
+	        if ( this.left < this.path ) {
+	            ( ( this.path - this.left ) < step ) ? move = this.path - this.left : move = step;
+				
+				if (Math.abs(ms.shift) < move && ms.shift > 0)
+					move = Math.abs(ms.shift);
+				
+	            this.left += move;
+				ms.setShift();
+	        }
+	    } else if ( kbd.isPressed( 'left' ) || ms.shift < 0) {
+	        if ( this.left > 0 ) {
+	            ( this.left < step ) ? move = this.left : move = step;
+				
+				if (Math.abs(ms.shift) < move && ms.shift < 0)
+					move = Math.abs(ms.shift);
+
+	            this.left -= move;
+				ms.setShift();
+	        }
+        }
 		racket.style.left = this.left + 'px';
-		
 	}
+	
 }
 
 function Brick(id, type){
@@ -102,11 +109,28 @@ function Brick(id, type){
 		bricks[this.parentNode.id].hit();
 	}
 }
-
+function Display(){
+	this.countdown = function(){
+		var shots = ["3", "2", "1", "GO", ""];
+		var counter = document.getElementById("counter");
+		counter.style.display = "block";
+		var i = 0;
+		function post(){
+			setTimeout(function(){
+				if (i < shots.length) {
+					counter.innerHTML = shots[i];
+					i++;
+					post();
+				}
+			}, 1000);
+		}
+		post();
+	}
+}
 function Ball()
 {
 	this.x = 50; this.y = 50;
-	this.speed = {x : 10, y : 15};
+	this.speed = {x : 15, y : 25};
 	this.element = document.getElementById("ball");
 	var element = this.element;
 	this.left = parseFloat(window.getComputedStyle(element, null).getPropertyValue("left"));
@@ -114,5 +138,4 @@ function Ball()
 	this.width = parseFloat(window.getComputedStyle(element, null).getPropertyValue("width"));
 	this.height = parseFloat(window.getComputedStyle(element, null).getPropertyValue("height"));
 
-//		this.move =  function () {}
 }

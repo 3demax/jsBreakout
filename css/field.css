@@ -1,3 +1,4 @@
+@import "http://fonts.googleapis.com/css?family=PT+Serif:regular,italic,bold,bolditalic"; 
 * {
     margin: 0px;
     padding: 0px;
@@ -8,31 +9,25 @@
 body {
     background: #db9b66 url(../img/bg-beige.png) repeat left top;
 }
-#wrapper {
-    /*border-top: 10px solid black;*/	
-}
 #field {
     width: 600px;
     height: 480px;
     margin: 25px auto;
     overflow: hidden;
     background: #87542e url(../img/bg-darker.png) repeat left top;
-    box-shadow: inset 1px 1px 3px rgba(0, 0, 0, .3)/*,
-				inset 0px -2px #87542e,
-				inset 0px -3px rgba(255,255,255,.15)*/;
+    box-shadow: inset 1px 1px 3px rgba(0, 0, 0, .3);
     border-radius: 2px;
 	border-bottom:1px solid rgba(255,255,255,.3);
 }
 #ball {
-    width: 20px;
-    height: 20px;
+    width: 32px;
+    height: 32px;
 	border:1px solid rgba(255,255,255, .05);
     position: relative;
 	top:0px;
 	left:0px;
-    border-radius: 10px;
+    border-radius: 16px;
     background-color: #d20;
-    /*box-shadow: 2px 2px 0 1px #c00, 2px 2px 20px rgba(0, 0, 0, .6);*/
 	box-shadow: 1px 1px #c00, 2px 2px #c00, 3px 2px #c00, 3px 3px 20px rgba(0, 0, 0, .6);
 }
 #display{
@@ -40,22 +35,20 @@ body {
 	border-radius:3px;
 	height: inherit;
 	width: inherit;
-	padding: auto 0;
 	position: absolute;
 	top:25px;;
-	z-index:2;
-	
+	z-index:2;	
+	display: table;
 }
-#display p{
-	font: 72pt / 1 "League Gothic";
+#counter{
+	font: 36pt / 1 "League Gothic";
     color: #ddd;
     text-shadow: 2px 2px #999;
 	text-align: center;
-	margin-top:25%;
+	display: none;
 }
 #bricks-layer{
 	margin-bottom:-100%;
-	/*padding:0px 5px 0 4px;*/
 	height: inherit;
 	width: inherit;
 	position: absolute;
@@ -69,7 +62,6 @@ body {
 	height:22px;
 	float: left;
 }
-
 .brick p{
 	font:50%/2.4 sans-serif;
 	text-align: center;
@@ -92,9 +84,9 @@ body {
 }
 #racket {
     width: 120px;
-    height: 20px;
+    height: 22px;
     position: relative;
-    top: 423px;
+    top: 430px;
     left: 200px;
     border-radius: 5px 5px 0 0;
 	border: 1px solid rgba(255,255,255,.05);
@@ -104,14 +96,14 @@ body {
 				2px 2px 0px rgba(0, 0, 0, .6);
     background: #888;
 }
-#ball, #racket{
+#ball, #racket, #name-request{
     transition: all .2s linear;
     -webkit-transition: all .2s linear;
     -moz-transition: all .2s linear;
     -o-transition: all .2s linear;
 }
 #info {
-    background: #ebcca9 url(../img/bg-brown.png) repeat left top;
+    background: transparent url(../img/bg-brown.png) repeat left top;
     height: 88pt;
     padding: 10px 30px;
 }
@@ -141,4 +133,14 @@ body {
 }
 #info #lives {
     border-right-color:transparent;
+}
+#info #about{
+	font: bold 11pt/1.3 'PT Serif', serif;
+	color: #fBbB86;
+	text-shadow:none;
+	text-align: left;
+}
+#info dt:first-child{
+	text-align: left;
+	text-indent: 1.5em;
 }

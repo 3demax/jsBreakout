@@ -2,6 +2,7 @@
 <html>
 <head>
 	<title>jsBreakout</title>
+	<meta charset="UTF-8">
 	<link rel="stylesheet" href="css/field.css" type="text/css" />
 	<!--	RightJS library-->
 	<script type="text/javascript" src="js/right.js"></script>
@@ -28,13 +29,18 @@
 	    <div id="bricks-layer"></div>
         <div id="ball"></div>
 		<div id="racket"></div>
-<!--		<div id="display"></div>-->
+		<div id="display">
+			<p id="counter"></p>
+		</div>
     </div>
 	    <div id="info">
 			<dl>
-				<dt>level:</dt><dd id="level"></dd>
+				<dt>jsBreakout</dt>
+				<dd id="about">
+					A clone of the classic Atari game. Use arrow keys or mouse to move the pad and destroy bricks with the ball.
+				</dd>
 				<dt>points:</dt><dd id="points"></dd>
-				<dt>lives:</dt><dd id="lives"></dd>
+				<dt>lives left:</dt><dd id="lives"></dd>
 			</dl>
 		</div>
 	</div>
