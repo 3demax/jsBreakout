@@ -1,4 +1,4 @@
-@import "http://fonts.googleapis.com/css?family=PT+Serif:regular,italic,bold,bolditalic"; 
+/*@import "http://fonts.googleapis.com/css?family=PT+Serif:regular,italic,bold,bolditalic";*/ 
 * {
     margin: 0px;
     padding: 0px;
@@ -138,6 +138,7 @@ body {
 	color: #fBbB86;
 	text-shadow:none;
 	text-align: left;
+	height: 72pt;
 }
 #info dt:first-child{
 	text-align: left;

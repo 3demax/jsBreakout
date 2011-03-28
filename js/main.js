@@ -19,6 +19,7 @@ App = {
 		
 		field.fill();
 		if (App.debugMode === 0) display.countdown();
+		//field.asdf(200,100,220, 10);
 
 		//level = document.getElementById("level");
 		points = document.getElementById("points");

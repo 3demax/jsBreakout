@@ -42,11 +42,29 @@ function Field(){
 		for ( id = 0; id < 10; id++ ) bricks[id] = new Brick(id, "p7");
 		for ( id = 10; id < 20; id++ ) bricks[id] = new Brick(id, "p5");
 		for ( id = 20; id < 30; id++ ) bricks[id] = new Brick(id, "p3");
+		
 	}
+	/*this.asdf = function(x1, y1, x2, y2){
+		var k = (y2 - y1) / (x2 - x1);
+		var b = ( (x2 * y1) - (x1*y2) ) / ( x2 - x1);
+		var x = x1;
+		var y = y1;
+		while (x != x2){
+			y = k * x + b;
+			for (i=0; i < bricks.length; i++){
+				if (bricks[i].contains(x, y)){
+					document.getElementById("info").innerHTML += bricks[i].id + " " + y;
+					return y;
+					bricks[i].hit();
+					break
+				}
+			}
+			(x2 > x1)? x++: x--;
+		}
+	}*/
 }
 
 function Pad(){
-	//this.speed = 600;
 	this.speed = { maximum: 300, x: 0}
 	this.x = 0;
 	var racket = document.getElementById("racket");
@@ -93,6 +111,18 @@ function Brick(id, type){
     var brick = document.createElement("p");
     brickCell.appendChild(brick);
     layer.appendChild(brickCell);
+	/*this.corners = [
+		[brickCell.offsetLeft, brickCell.offsetTop],
+		[brickCell.offsetLeft + brickCell.offsetWidth, brickCell.offsetTop],
+		[brickCell.offsetLeft + brickCell.offsetWidth, brickCell.offsetTop + brickCell.offsetHeight],
+		[brickCell.offsetLeft, brickCell.offsetTop + brickCell.offsetHeight],
+	];*/
+	this.contains = function(x, y){
+		return (x > brickCell.offsetLeft &&
+		 (x < brickCell.offsetLeft + brickCell.offsetWidth) &&
+		  y > brickCell.offsetTop && 
+		  (y < brickCell.offsetTop + brickCell.offsetHeight));
+	}
 	this.hit = function(){
 		document.getElementById(this.id).innerHTML = "";
 		document.getElementById(this.id).id="";
