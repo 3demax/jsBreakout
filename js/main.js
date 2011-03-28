@@ -1,5 +1,5 @@
 App = {
-	debugMode : 0,
+	debugMode : 1,
 	cycleDuration: 200, //in miliseconds
 	say : function(info)
 	{
@@ -9,31 +9,32 @@ App = {
 	// this function is executed at startup
 	load : function()
 	{
-		field = new Field();
-		pad = new Pad();
-		display = document.getElementById("display");
-		
-		field.fill();
-		if (App.debugMode === 0) App.countdown();
-
 		kbd = new Keyboard();
 		ms = new Mouse();
-		App.requestName();
+		
+		field = new Field();
+		pad = new Pad();
+		display = new Display();
+		
+		field.fill();
+		if (App.debugMode === 0) display.countdown();
+
 		level = document.getElementById("level");
 		points = document.getElementById("points");
 		lives = document.getElementById("lives");
-		
-		document.addEventListener( 'keydown', function(event){            
+		document.addEventListener( 'keydown', function(event){
+			ms.shift = 0;
             kbd.setPressed(kbd.key[event.which]);
 		},false);
 		
 		document.addEventListener( 'keyup', function(event){
+			ms.shift = 0;
 			kbd.setReleased(kbd.key[event.which]);
 		},false);
 		
 		document.addEventListener( 'mousemove', function(event){
-			//pad.left = ms.x(event);
-			ms.setX(ms.convertX(event))
+			ms.x = ms.convertX(event);
+			ms.setShift();
 		},false);
 	},
 
@@ -49,29 +50,5 @@ App = {
 		level: 1,
 		points: 0,
 		lives: 5,
-		record: function(name){
-			if (!name) {
-				display.innerHTML = '<form><input id="name" placeholder="Enter your name"></form>';
-			}
-				var record = {"time":new Date(), "name": name, "points": App.state.points, "lives": App.state.lives};
-				window.localStorage.setItem(name, record);
-		},
-		
-	},
-	countdown: function(){
-		var shots = ["3", "2", "1", "GO", ""];
-		var i = 0;
-		function post(){
-			setTimeout(function(){
-				if (i < shots.length) {
-					display.innerHTML = "<p>" + shots[i] + "</p>";
-					i++;
-					post();
-				}
-			}, 1000);
-		}
-		post();
-	},
-	requestName: function(){
 	}
 };
