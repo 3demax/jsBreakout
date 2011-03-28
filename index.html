@@ -13,11 +13,12 @@
 	<script type="text/javascript" src="js/main.js"></script>
 	<script type="text/javascript">
 	function AppLoop(){
-		App.update();
+		if (App.running) {App.update();}
 		setTimeout(AppLoop, App.cycleDuration);
 	}
 	$(document).on('ready', function() {
 		App.load();
+		App.reset();
 		AppLoop();
 	});
 	</script>

@@ -69,6 +69,7 @@ function Pad(){
 	this.x = 0;
 	var racket = document.getElementById("racket");
 	this.width = parseFloat(window.getComputedStyle(racket, null).getPropertyValue("width"));
+	this.height = parseFloat(window.getComputedStyle(racket, null).getPropertyValue("height"));
 	this.path = field.width - this.width;
 	var step = this.speed.maximum * App.cycleDuration / 1000;
 	var move = step;
@@ -99,7 +100,9 @@ function Pad(){
         }
 		racket.style.left = this.left + 'px';
 	}
-	
+	this.speed.x = move;
+	this.set = function(x) 
+	{ racket.style.left = x + 'px' }
 }
 
 function Brick(id, type){
@@ -160,11 +163,18 @@ function Display(){
 function Ball()
 {
 	this.x = 50; this.y = 50;
-	this.speed = {x : 10, y : 30};
+	this.speed = {x : 15, y :30};
 	this.element = document.getElementById("ball");
 	var element = this.element;
 	this.left = parseFloat(window.getComputedStyle(element, null).getPropertyValue("left"));
 	this.top = parseFloat(window.getComputedStyle(element, null).getPropertyValue("top"));
 	this.width = parseFloat(window.getComputedStyle(element, null).getPropertyValue("width"));
 	this.height = parseFloat(window.getComputedStyle(element, null).getPropertyValue("height"));
+	this.set = function(x,y){
+		ball.x = x;
+		ball.y = y;
+		ball.element.style.left = x + 'px';
+		ball.element.style.top = y + 'px';
+	}
+
 }
