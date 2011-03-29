@@ -203,20 +203,22 @@ function Stack(){
 		];
 	this.add = function(item){
 		this.items.push(item);
-		for (i = this.items.length - 1; i > 0; i--){
-			for (j = 0; j < i; j++){
-				if (this.items[j].r > this.items[j + 1].r){
-					m = this.items[j];
-					this.items[j] = this.items[j + 1];
-					this.items[j + 1] = m;
-				}
+		this.counter ++;
+		//App.say(item.x + " " + item.y + " " + item.r)
+	}
+	this.min = function(){
+		var radii=[];
+		for (i=0;i<this.items.length;i++){
+			radii.push(this.items[i].r);
+		}
+		rmin = radii.sort()[0];
+		for (i=0;i<this.items.length;i++){
+			if (this.items[i].r === rmin){
+				return this.items[i];
+				break;
 			}
 		}
 	}
-	this.min = function(index){
-		return this.items[index];
-	}
-	
 }
 
 
