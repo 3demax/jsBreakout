@@ -24,8 +24,8 @@ body {
     height: 32px;
 	border:1px solid rgba(255,255,255, .05);
     position: relative;
-	top:0px;
-	left:0px;
+	top:420px;
+	left:284px;
     border-radius: 16px;
     background-color: #d20;
 	box-shadow: 1px 1px #c00, 2px 2px #c00, 3px 2px #c00, 3px 3px 4px rgba(0, 0, 0, .6);
@@ -64,7 +64,6 @@ body {
 	z-index:1;
 	overflow:hidden;
 	border-radius:2px;
-	/*display: none;*/
 }
 .brick{
 	width:60px;
@@ -96,7 +95,7 @@ body {
     height: 22px;
     position: relative;
     top: 430px;
-    left: 200px;
+    left: 240px;
     border-radius: 5px 5px 0 0;
 	border: 1px solid rgba(255,255,255,.05);
     box-shadow: 1px 1px #707070,
@@ -110,6 +109,10 @@ body {
     -webkit-transition: all .2s linear;
     -moz-transition: all .2s linear;
     -o-transition: all .2s linear;
+/*    transition: all .2s none;*/
+/*    -webkit-transition: all .2s none;*/
+/*    -moz-transition: all .2s none;*/
+/*    -o-transition: all .2s none;*/
 }
 #info {
     background: transparent url(../img/bg-brown.png) repeat left top;

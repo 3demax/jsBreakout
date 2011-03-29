@@ -48,9 +48,9 @@ physics = {
 		
 		ball.px = ball.x + ball.speed.x;
 		ball.py = ball.y + ball.speed.y;
-		App.say("==== start ==== \n" + "bx=" + ball.x + " by=" + ball.y)
-		ppy = ball.py
+//		App.say("==== start ==== \n" + "bx=" + ball.x + " by=" + ball.y)
 		ppx = ball.px
+		ppy = ball.py
 	//	if(py < field.dots[0][1]) {
 		if ( (ball.py <= 0) && (ball.speed.y < 0) ){
 			App.say("py < 0");
@@ -77,9 +77,10 @@ physics = {
 			//Reflection from pad
 			
 			h = field.height-ball.height-pad.height;
-			//here will be pad
-			padxx = Math.ceil( parseFloat(pad.left) + pad.speed.x*(h-ball.y)/(ball.py-ball.y) );
+			//we predict that pad will be here
+			padxx = Math.round( parseFloat(pad.left) + pad.speed.x*(h-ball.y)/(ball.py-ball.y) );
 			bw = ball.x + ball.width;
+			App.say("pad.x=" + pad.left + "\npad.speed=" + pad.speed.x);
 			App.say("padxx=" + padxx + "\nball.x=" + ball.x);
 			if  (	( (ball.x > padxx) && (ball.x < padxx + pad.width) ) 
 					||
@@ -106,7 +107,7 @@ physics = {
 		ball.y = ppy
 		ball.element.style.left = ball.x + 'px';
 		ball.element.style.top = ball.y + 'px';
-		App.say("px=" + ball.px + " py=" + ball.py + "\n ==== end ====");
+//		App.say("px=" + ball.px + " py=" + ball.py + "\n ==== end ====");
 
 		
 	}

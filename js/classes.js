@@ -83,6 +83,7 @@ function Pad(){
 				
 				if (Math.abs(ms.shift) < move && ms.shift > 0)
 					move = Math.abs(ms.shift);
+					this.speed.x = ms.shift;
 				
 	            this.left += move;
 				ms.setShift();
@@ -93,6 +94,7 @@ function Pad(){
 				
 				if (Math.abs(ms.shift) < move && ms.shift < 0)
 					move = Math.abs(ms.shift);
+					this.speed.x = ms.shift;
 
 	            this.left -= move;
 				ms.setShift();
@@ -181,14 +183,15 @@ function Display(){
 }
 function Ball()
 {
-	this.x = 50; this.y = 50;
-	this.speed = {x : 45, y :70};
+	this.speed = {x : 25, y :-50};
 	this.element = document.getElementById("ball");
 	var element = this.element;
 	this.left = parseFloat(window.getComputedStyle(element, null).getPropertyValue("left"));
 	this.top = parseFloat(window.getComputedStyle(element, null).getPropertyValue("top"));
 	this.width = parseFloat(window.getComputedStyle(element, null).getPropertyValue("width"));
 	this.height = parseFloat(window.getComputedStyle(element, null).getPropertyValue("height"));
+	this.x = this.left; this.y = this.top;
+	this.px = this.x; this.py = this.y
 	this.set = function(x,y){
 		ball.x = x;
 		ball.y = y;
