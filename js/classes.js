@@ -38,12 +38,13 @@ function Field(){
 	this.height = parseFloat(window.getComputedStyle(field, null).getPropertyValue("height"));
 	this.left = parseFloat(window.getComputedStyle(field, null).getPropertyValue("left"));
 	this.fill = function(){
-		bricks={}
+		bricks=[]
 		for ( id = 0; id < 10; id++ ) bricks[id] = new Brick(id, "p7");
 		for ( id = 10; id < 20; id++ ) bricks[id] = new Brick(id, "p5");
 		for ( id = 20; id < 30; id++ ) bricks[id] = new Brick(id, "p3");
 		
 	}
+
 	this.asdf = function(x1, y1, x2, y2){
 		var k = (y2 - y1) / (x2 - x1);
 		//var b = ( (x2 * y1) - (x1*y2) ) / ( x2 - x1);
@@ -151,6 +152,15 @@ function Brick(id, type){
 		bricks[this.parentNode.id].hit();
 	}
 }
+
+Bricks = {
+	getId : function(ix,iy){
+		for (i=0; i<bricks.length; i++){
+			if (bricks[i].contains(ix,iy)) return i;
+		}
+	},
+}
+
 function Display(){
 	this.countdown = function(){
 		var shots = ["3", "2", "1", "GO", ""];
@@ -203,6 +213,7 @@ function Ball()
 }
 
 function Stack(){
+	this.counter == 0;
 	this.items = [
 			/*
 			 * test values 
@@ -216,6 +227,8 @@ function Stack(){
 		];
 	this.add = function(item){
 		this.items.push(item);
+		this.counter ++;
+		//App.say(item.x + " " + item.y + " " + item.r)
 	}
 	this.min = function(){
 		var radii=[];
@@ -231,3 +244,5 @@ function Stack(){
 		}
 	}
 }
+
+
