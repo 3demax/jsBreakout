@@ -24,8 +24,8 @@ body {
     height: 32px;
 	border:1px solid rgba(255,255,255, .05);
     position: relative;
-	top:0px;
-	left:0px;
+	top:420px;
+	left:284px;
     border-radius: 16px;
     background-color: #d20;
 	box-shadow: 1px 1px #c00, 2px 2px #c00, 3px 2px #c00, 3px 3px 20px rgba(0, 0, 0, .6);
@@ -87,7 +87,7 @@ body {
     height: 22px;
     position: relative;
     top: 430px;
-    left: 200px;
+    left: 240px;
     border-radius: 5px 5px 0 0;
 	border: 1px solid rgba(255,255,255,.05);
     box-shadow: 1px 1px #707070,

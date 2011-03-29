@@ -134,15 +134,15 @@ function Display(){
 }
 function Ball()
 {
-	this.x = 50; this.y = 50;
-	this.px = this.x; this.py = this.y
-	this.speed = {x : 15, y :30};
+	this.speed = {x : 15, y :-35};
 	this.element = document.getElementById("ball");
 	var element = this.element;
 	this.left = parseFloat(window.getComputedStyle(element, null).getPropertyValue("left"));
 	this.top = parseFloat(window.getComputedStyle(element, null).getPropertyValue("top"));
 	this.width = parseFloat(window.getComputedStyle(element, null).getPropertyValue("width"));
 	this.height = parseFloat(window.getComputedStyle(element, null).getPropertyValue("height"));
+	this.x = this.left; this.y = this.top;
+	this.px = this.x; this.py = this.y
 	this.set = function(x,y){
 		ball.x = x;
 		ball.y = y;
