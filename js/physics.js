@@ -46,9 +46,9 @@ physics = {
 	{
 		//Reflection from walls
 		
-		ball.px = ball.px + ball.speed.x;
-		ball.py = ball.py + ball.speed.y;
-		App.say("==== start ==== \n" + "bx=" + ball.x + " by=" + ball.y)
+		ball.px = ball.x + ball.speed.x;
+		ball.py = ball.y + ball.speed.y;
+//		App.say("==== start ==== \n" + "bx=" + ball.x + " by=" + ball.y)
 		ppx = ball.px
 		ppy = ball.py
 	//	if(py < field.dots[0][1]) {
@@ -106,7 +106,7 @@ physics = {
 		ball.y = ppy
 		ball.element.style.left = ball.x + 'px';
 		ball.element.style.top = ball.y + 'px';
-		App.say("px=" + ball.px + " py=" + ball.py + "\n ==== end ====");
+//		App.say("px=" + ball.px + " py=" + ball.py + "\n ==== end ====");
 
 		
 	}

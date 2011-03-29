@@ -55,7 +55,7 @@ body {
 	z-index:1;
 	overflow:hidden;
 	border-radius:2px;
-	display: none;
+/*	display: none;*/
 }
 .brick{
 	width:60px;
@@ -101,6 +101,10 @@ body {
     -webkit-transition: all .2s linear;
     -moz-transition: all .2s linear;
     -o-transition: all .2s linear;
+/*    transition: all .2s none;*/
+/*    -webkit-transition: all .2s none;*/
+/*    -moz-transition: all .2s none;*/
+/*    -o-transition: all .2s none;*/
 }
 #info {
     background: transparent url(../img/bg-brown.png) repeat left top;

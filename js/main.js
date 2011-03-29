@@ -57,8 +57,8 @@ App = {
 	},
 	reset : function(){
 		ball.set( field.width/2 - ball.width/2,  field.height-ball.height-pad.height);
-		ball.speed.y = -30;
-		ball.speed.x = 15;
+		ball.speed.y = -Math.abs(ball.speed.y);
+		ball.speed.x = Math.abs(ball.speed.x);
 		pad.set( field.width/2 - pad.width/2 )
 	},
 	start : function(){
