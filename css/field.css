@@ -1,4 +1,4 @@
-/*@import "http://fonts.googleapis.com/css?family=PT+Serif:regular,italic,bold,bolditalic";*/ 
+@import "http://fonts.googleapis.com/css?family=PT+Serif:regular,italic,bold,bolditalic"; 
 * {
     margin: 0px;
     padding: 0px;
@@ -83,8 +83,8 @@ body {
     box-shadow: 1px 1px #882e1c, 2px 2px #882e1c, 3px 3px #882e1c, 3px 3px 4px rgba(0, 0, 0, .6);
 }
 .p7 p{
-	background-color: #c66b43/*c06c46*/;
-    box-shadow: 1px 1px #ab5c3a, 2px 2px #ab5c3a/*a35c3b*/, 3px 3px #ab5c3a, 3px 3px 4px rgba(0, 0, 0, .6);
+	background-color: #c66b43;
+    box-shadow: 1px 1px #ab5c3a, 2px 2px #ab5c3a, 3px 3px #ab5c3a, 3px 3px 4px rgba(0, 0, 0, .6);
 }
 .p5 p{
 	background-color: #EDA568;
@@ -128,7 +128,7 @@ body {
 #info dd {
     font: 72pt / 1 "League Gothic";
     color: #67a7db;
-    text-shadow: 2px 2px #db9b66/*#db6790 #eda6c6*/;
+    text-shadow: 2px 2px #db9b66;
     clear: none;
 	padding-top:16pt;
 	border-right: 3px dotted black;
@@ -143,8 +143,8 @@ body {
     border-right-color:transparent;
 }
 #info #about{
-	font: bold 11pt/1.3 'PT Serif', serif;
-	color: #fBbB86;
+	font: bold 11pt/1.2 'PT Serif', sans-serif;
+	/*color: #fBbB86;*/
 	text-shadow:none;
 	text-align: left;
 	height: 72pt;
