@@ -66,7 +66,28 @@ physics = {
 		if ( (ball.py < 66) )//|| (ball.y < 66) )
 		{
 //			App.say("brickTime");
-			brickTime(ball.x, ball.y, ball.px, ball.py);			
+			var bx = ball.x
+			var by = ball.y
+			var px = ball.px
+			var py = ball.py
+			if (ball.speed.y < 0){
+				if (ball.speed.x > 0)
+				{
+					var bx = ball.x + ball.width;
+					var by = ball.y;
+					var px = ball.px + ball.width;
+				}
+			} else {
+				by = ball.y + ball.height;
+				if (ball.speed.x > 0)
+				{
+					var bx = ball.x + ball.width;
+					var px = ball.px + ball.width;
+					var py = ball.y + ball.height;
+				}
+			}
+			
+			brickTime(bx, by, px, py);			
 //			ball.ppx = 0
 //			ball.speed.x = -ball.speed.x
 		}
@@ -159,12 +180,15 @@ physics = {
 				this.stack.add({x: ans[0] , y: ans[1], position: 'vertical', r: radius });
 			}
 		}
-		ans = stack.min()
-//		App.say(ans.x + " " + ans.y)
+		ans = stack.min();
 		hitId = Bricks.getId(Math.round(ans.x),Math.round(ans.y)-1);
-		App.say("hitId="+hitId);
-//		if ((bricks[hitId].id==""))
+//		App.say("hitId="+hitId);
+		
+		tries = 0;
+//		if ( (bricks[hitId].id=="") || ( (typeof(hitId)=="undefined" ) ) )
 //		{
+//			ans = stack.min()
+//			tries++;
 //		}
 		if (!(typeof(hitId)=="undefined") && (bricks[hitId].id!="")) 
 		{
@@ -181,7 +205,6 @@ physics = {
 				ball.ppx = ans.x;
 			}
 		}
-//		App.stop();
 	}
 
 
