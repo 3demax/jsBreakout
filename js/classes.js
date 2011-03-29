@@ -224,10 +224,9 @@ function Stack(){
 		rmin = radii.sort()[0];
 		for (i=0;i<items.length;i++){
 			if (items[i].r === rmin){
-				return [items[i].x, items[i].y];
+				return items[i];
 				break;
 			}
 		}
-		//document.getElementById("info").innerHTML += hit.x + ' ' + hit.y + ' ' + hit.position + ' ' + hit.r;
 	}
 }
