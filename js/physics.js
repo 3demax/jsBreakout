@@ -163,13 +163,10 @@ physics = {
 //		App.say(ans.x + " " + ans.y)
 		hitId = Bricks.getId(Math.round(ans.x),Math.round(ans.y)-1);
 		App.say("hitId="+hitId);
-		if ((bricks[hitId].id==""))
-		{
-			var answ = solve(lx1, ly1, lx2, ly2, ans.x, ans.y, px, py);
-			var radius = Math.sqrt( Math.pow(answ[0] - bx, 2) + Math.pow(answ[1] - by, 2) );
-			this.stack.add({x: answ[0] , y: answ[1], position: 'vertical', r: radius });
-		}
-		if (!(typeof(hitId)=="undefined") )//&& (bricks[hitId].id!="")) 
+//		if ((bricks[hitId].id==""))
+//		{
+//		}
+		if (!(typeof(hitId)=="undefined") && (bricks[hitId].id!="")) 
 		{
 			App.say("bump");
 			bricks[hitId].hit();

@@ -59,7 +59,7 @@ App = {
 	reset : function(){
 		ball.set( field.width/2 - ball.width/2,  field.height-ball.height-pad.height);
 		ball.speed.y = -Math.abs(ball.speed.y);
-		ball.speed.x = Math.abs(ball.speed.x);
+		ball.speed.x = (Math.round(Math.random())*2-1)*Math.abs(ball.speed.x);
 		pad.set( field.width/2 - pad.width/2 );
 	},
 	start : function(){
