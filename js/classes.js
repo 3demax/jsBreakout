@@ -134,7 +134,7 @@ function Display(){
 }
 function Ball()
 {
-	this.speed = {x : 25, y :-50};
+	this.speed = {x : 25, y :30};
 	this.element = document.getElementById("ball");
 	var element = this.element;
 	this.left = parseFloat(window.getComputedStyle(element, null).getPropertyValue("left"));
