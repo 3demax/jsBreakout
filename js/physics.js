@@ -95,6 +95,9 @@ physics = {
 				App.say("You loose.")
 				App.state.lives --;
 				lives.innerHTML = App.state.lives;
+				if (App.state.lives === 0) {
+					App.gameOver();
+				}else
 				App.stop();
 				
 			}

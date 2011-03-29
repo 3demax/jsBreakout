@@ -60,7 +60,7 @@ App = {
 		ball.set( field.width/2 - ball.width/2,  field.height-ball.height-pad.height);
 		ball.speed.y = -Math.abs(ball.speed.y);
 		ball.speed.x = Math.abs(ball.speed.x);
-		pad.set( field.width/2 - pad.width/2 )
+		pad.set( field.width/2 - pad.width/2 );
 	},
 	start : function(){
 		display.clear();
@@ -68,11 +68,20 @@ App = {
 	},
 	stop : function(){
 		App.running = false;
-		display.message("Click to continue", false);
+		if (App.state.lives != 0) {
+			display.message(' ', false);
+			setTimeout(App.restart, 1000);
+		}
 	},
 	restart : function(){
 		App.reset();
 		App.update();
 		App.start();
+	},
+	gameOver: function(){
+		App.running = false;
+		App.state.lives = 5;
+		App.state.points = 0;
+		display.message("You've lost. Click to play again.", false);
 	}
 };

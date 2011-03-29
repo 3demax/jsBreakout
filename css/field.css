@@ -1,4 +1,4 @@
-@import "http://fonts.googleapis.com/css?family=PT+Serif:regular,italic,bold,bolditalic"; 
+/*@import "http://fonts.googleapis.com/css?family=PT+Serif:regular,italic,bold,bolditalic";*/ 
 * {
     margin: 0px;
     padding: 0px;
@@ -43,7 +43,7 @@ body {
 #message{
 	font: 36pt / 1 "League Gothic";
     color: #ddd;
-    text-shadow: 2px 2px #999;
+    text-shadow: 1px 1px #999;
 	background: rgba(0,0,0,.3);
 	text-align: center;
 	vertical-align: middle;
@@ -109,10 +109,6 @@ body {
     -webkit-transition: all .2s linear;
     -moz-transition: all .2s linear;
     -o-transition: all .2s linear;
-/*    transition: all .2s none;*/
-/*    -webkit-transition: all .2s none;*/
-/*    -moz-transition: all .2s none;*/
-/*    -o-transition: all .2s none;*/
 }
 #info {
     background: transparent url(../img/bg-brown.png) repeat left top;

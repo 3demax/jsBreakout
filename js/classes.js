@@ -83,8 +83,8 @@ function Pad(){
 				
 				if (Math.abs(ms.shift) < move && ms.shift > 0)
 					move = Math.abs(ms.shift);
-					this.speed.x = ms.shift;
 				
+				this.speed.x = move / App.cycleDuration;
 	            this.left += move;
 				ms.setShift();
 	        }
@@ -94,8 +94,8 @@ function Pad(){
 				
 				if (Math.abs(ms.shift) < move && ms.shift < 0)
 					move = Math.abs(ms.shift);
-					this.speed.x = ms.shift;
 
+				this.speed.x = move / App.cycleDuration;
 	            this.left -= move;
 				ms.setShift();
 	        }
@@ -113,6 +113,7 @@ function Brick(id, type){
     brickCell.className = "brick " + type;
 	brickCell.id = id;
 	this.id=id;
+	this.width = brickCell.offsetWidth;
     var brick = document.createElement("p");
     brickCell.appendChild(brick);
     layer.appendChild(brickCell);
@@ -202,7 +203,7 @@ function Ball()
 }
 
 function Stack(){
-	var items = [
+	this.items = [
 			/*
 			 * test values 
 			{x: 30, y: 50, position: 'horizontal', r: 90},
@@ -214,17 +215,17 @@ function Stack(){
 			*/
 		];
 	this.add = function(item){
-		items.push(item);
+		this.items.push(item);
 	}
 	this.min = function(){
 		var radii=[];
-		for (i=0;i<items.length;i++){
-			radii.push(items[i].r);
+		for (i=0;i<this.items.length;i++){
+			radii.push(this.items[i].r);
 		}
 		rmin = radii.sort()[0];
-		for (i=0;i<items.length;i++){
-			if (items[i].r === rmin){
-				return items[i];
+		for (i=0;i<this.items.length;i++){
+			if (this.items[i].r === rmin){
+				return this.items[i];
 				break;
 			}
 		}
