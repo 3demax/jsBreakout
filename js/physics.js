@@ -12,6 +12,19 @@ function solve(x1, y1, x2, y2, bx, by, dx, dy)
 	return [x,y]
 }
 
+function intersects(x1, y1, x2, y2, bx, by, dx, dy)
+{
+	ans = solve(x1, y1, x2, y2, bx, by, dx, dy)
+	if  (	( (ans[0] >= x1) && (ans[0] <= x2) ) 
+			&&
+			( (ans[1] >= y1) && (ans[1] <= y2) ) 
+		){
+		return true
+	}else{
+		return false
+	}
+}
+
 function sgn(a)
 {
 	a>0 ? a=1 : ( a<0 ? a=-1 : a=0 );
@@ -49,70 +62,63 @@ physics = {
 		ball.px = ball.x + ball.speed.x;
 		ball.py = ball.y + ball.speed.y;
 //		App.say("==== start ==== \n" + "bx=" + ball.x + " by=" + ball.y)
-		ppx = ball.px
-		ppy = ball.py
-	//	if(py < field.dots[0][1]) {
+		ball.ppx = ball.px
+		ball.ppy = ball.py
 		if ( (ball.py <= 0) && (ball.speed.y < 0) ){
 			App.say("py < 0");
-			ppy = 0
+			ball.ppy = 0
 			ball.speed.y = -ball.speed.y
 		}
-	//	if(px < field.dots[0][0]) {
+		
 		if ( (ball.px < 0) && (ball.speed.x < 0) ){
 			App.say("px < 0");
-			ppx = 0
-			ball.speed.x = -ball.speed.x
-		}
-	//	if(px > field.dots[2][0]) {
-		if ( (ball.px > field.width-ball.width) && (ball.speed.x > 0) ) {
-			App.say("px > width");
-			ppx = field.width-ball.width
+			ball.ppx = 0
 			ball.speed.x = -ball.speed.x
 		}
 
-	//	if(py > field.dots[2][1]) {
+		if ( (ball.px > field.width-ball.width) && (ball.speed.x > 0) ) {
+			App.say("px > width");
+			ball.ppx = field.width-ball.width
+			ball.speed.x = -ball.speed.x
+		}
+
 		if ( (ball.py > field.height-ball.height-pad.height) && (ball.speed.y > 0) ) {
 			App.say("py > height");
 			
-			//Reflection from pad
-			
-			h = field.height-ball.height-pad.height;
-			//we predict that pad will be here
-			padxx = Math.round( parseFloat(pad.left) + pad.speed.x*(h-ball.y)/(ball.py-ball.y) );
-			bw = ball.x + ball.width;
-			App.say("pad.x=" + pad.left + "\npad.speed=" + pad.speed.x);
-			App.say("padxx=" + padxx + "\nball.x=" + ball.x);
-			if  (	( (ball.x > padxx) && (ball.x < padxx + pad.width) ) 
-					||
-					( (bw > padxx) && (bw < padxx + pad.width) ) 
-				)	
-			{
-				ppy = h+5
-				ball.speed.y = -ball.speed.y
-			}		
-			else
-			{
-				App.say("You loose.")
-				App.state.lives --;
-				lives.innerHTML = App.state.lives;
-				if (App.state.lives === 0) {
-					App.gameOver();
-				}else
-				App.stop();
-				
-			}
-			
-//			ppy = field.height-ball.height-pad.height+5
-//			ball.speed.y = -ball.speed.y
+			this.reflect()
 		}
 
-		ball.x = ppx
-		ball.y = ppy
+		ball.x = ball.ppx
+		ball.y = ball.ppy
 		ball.element.style.left = ball.x + 'px';
 		ball.element.style.top = ball.y + 'px';
 //		App.say("px=" + ball.px + " py=" + ball.py + "\n ==== end ====");
+	},
 
-		
+	reflect : function () {
+		//Reflection from pad
+			
+		var h = field.height-ball.height-pad.height;
+		//we predict that pad will be here
+		var padxx = Math.round( parseFloat(pad.left) + pad.speed.x*(h-ball.y)/(ball.py-ball.y) );
+		var bw = ball.x + ball.width;
+		App.say("pad.x=" + pad.left + "\npad.speed=" + pad.speed.x);
+		App.say("padxx=" + padxx + "\nball.x=" + ball.x);
+		if  (	( (ball.x > padxx) && (ball.x < padxx + pad.width) ) 
+				||
+				( (bw > padxx) && (bw < padxx + pad.width) ) 
+			)	
+		{
+			ball.ppy = h+5
+			ball.speed.y = -ball.speed.y
+		}		
+		else
+		{
+			App.say("You loose.")
+			App.state.lives --;
+			lives.innerHTML = App.state.lives;
+			App.stop();
+		}
 	}
 }
 
