@@ -19,11 +19,11 @@ App = {
 		ball = new Ball();
 		
 		field.fill();
-		if (App.debugMode === 0) display.countdown();
+		if (!App.debugMode) display.countdown();
 
-		//level = document.getElementById("level");
 		points = document.getElementById("points");
 		lives = document.getElementById("lives");
+		
 		document.addEventListener( 'keydown', function(event){
 			ms.shift = 0;
             kbd.setPressed(kbd.key[event.which]);
@@ -38,20 +38,21 @@ App = {
 			ms.x = ms.convertX(event);
 			ms.setShift();
 		},false);
+		document.addEventListener('click', function(){
+			if (!App.running) App.restart();
+		},false);
+		
 	},
 
 	// main game cycle
 	update : function()
 	{
 		pad.move();
-		//level.innerHTML = App.state.level;
 		points.innerHTML = App.state.points;
 		lives.innerHTML = App.state.lives;
-		//ball.move();
 		physics.step();
 	},
 	state: {
-		//level: 1,
 		points: 0,
 		lives: 5,
 	},
@@ -62,10 +63,12 @@ App = {
 		pad.set( field.width/2 - pad.width/2 )
 	},
 	start : function(){
+		display.clear();
 		App.running = true;
 	},
 	stop : function(){
 		App.running = false;
+		display.message("Click to continue", false);
 	},
 	restart : function(){
 		App.reset();
