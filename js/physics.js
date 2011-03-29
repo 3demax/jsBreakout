@@ -112,7 +112,6 @@ physics = {
 
 		if ( (ball.py > field.height-ball.height-pad.height) && (ball.speed.y > 0) ) {
 //			App.say("py > height");
-			
 			this.reflect()
 		}
 
@@ -145,7 +144,13 @@ physics = {
 //			App.say("You loose.")
 			App.state.lives --;
 			lives.innerHTML = App.state.lives;
-			App.stop();
+			if (App.state.lives === 0) {
+					App.gameOver();
+				}else{
+					App.stop();
+					display.message('&nbsp;', false);
+					setTimeout(App.restart, 1000);
+			}
 		}
 	},
 	

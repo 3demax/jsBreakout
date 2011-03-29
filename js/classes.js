@@ -44,25 +44,6 @@ function Field(){
 		for ( id = 20; id < 30; id++ ) bricks[id] = new Brick(id, "p3");
 		
 	}
-
-	this.asdf = function(x1, y1, x2, y2){
-		var k = (y2 - y1) / (x2 - x1);
-		//var b = ( (x2 * y1) - (x1*y2) ) / ( x2 - x1);
-		var x = x1;
-		var y = y1;
-		while (x != x2){
-			y = k * x + b;
-			for (i=0; i < bricks.length; i++){
-				if (bricks[i].contains(x, y)){
-					document.getElementById("info").innerHTML += bricks[i].id + " " + y;
-					return y;
-					bricks[i].hit();
-					break
-				}
-			}
-			(x2 > x1)? x++: x--;
-		}
-	}
 }
 
 function Pad(){
@@ -101,11 +82,12 @@ function Pad(){
 				ms.setShift();
 	        }
         }
-		racket.style.left = this.left + 'px';
+		this.set(this.left);
 	}
 	this.speed.x = move;
-	this.set = function(x) 
-	{ racket.style.left = x + 'px' }
+	this.set = function(x){ 
+		racket.style.left = x + 'px'
+	}
 }
 
 function Brick(id, type){
@@ -113,17 +95,11 @@ function Brick(id, type){
     var brickCell = document.createElement("div");
     brickCell.className = "brick " + type;
 	brickCell.id = id;
-	this.id=id;
+	this.id = id;
 	this.width = brickCell.offsetWidth;
     var brick = document.createElement("p");
     brickCell.appendChild(brick);
     layer.appendChild(brickCell);
-	/*this.corners = [
-		[brickCell.offsetLeft, brickCell.offsetTop],
-		[brickCell.offsetLeft + brickCell.offsetWidth, brickCell.offsetTop],
-		[brickCell.offsetLeft + brickCell.offsetWidth, brickCell.offsetTop + brickCell.offsetHeight],
-		[brickCell.offsetLeft, brickCell.offsetTop + brickCell.offsetHeight],
-	];*/
 	this.contains = function(x, y){
 		return (x > brickCell.offsetLeft &&
 		 (x < brickCell.offsetLeft + brickCell.offsetWidth) &&
@@ -227,22 +203,20 @@ function Stack(){
 		];
 	this.add = function(item){
 		this.items.push(item);
-		this.counter ++;
-		//App.say(item.x + " " + item.y + " " + item.r)
-	}
-	this.min = function(){
-		var radii=[];
-		for (i=0;i<this.items.length;i++){
-			radii.push(this.items[i].r);
-		}
-		rmin = radii.sort()[0];
-		for (i=0;i<this.items.length;i++){
-			if (this.items[i].r === rmin){
-				return this.items[i];
-				break;
+		for (i = this.items.length - 1; i > 0; i--){
+			for (j = 0; j < i; j++){
+				if (this.items[j].r > this.items[j + 1].r){
+					m = this.items[j];
+					this.items[j] = this.items[j + 1];
+					this.items[j + 1] = m;
+				}
 			}
 		}
 	}
+	this.min = function(index){
+		return this.items[index];
+	}
+	
 }
 
 

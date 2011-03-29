@@ -41,7 +41,6 @@ App = {
 		document.addEventListener('click', function(){
 			if (!App.running) App.restart();
 		},false);
-		
 	},
 
 	// main game cycle
@@ -51,6 +50,7 @@ App = {
 		points.innerHTML = App.state.points;
 		lives.innerHTML = App.state.lives;
 		physics.step();
+		
 	},
 	state: {
 		points: 0,
@@ -68,15 +68,22 @@ App = {
 	},
 	stop : function(){
 		App.running = false;
-		if (App.state.lives != 0) {
-			display.message(' ', false);
-			setTimeout(App.restart, 1000);
-		}
 	},
 	restart : function(){
+		$('ball').setStyle('transition-duration', '0');
+		$('ball').setStyle('-o-transition-duration', '0');
+		$('ball').setStyle('-moz-transition-duration', '0');
+		$('ball').setStyle('-webkit-transition-duration', '0');
 		App.reset();
 		App.update();
-		App.start();
+		setTimeout(function(){
+			App.start();
+			$('ball').setStyle('transition-duration', '.2s');
+			$('ball').setStyle('-o-transition-duration', '.2s');
+			$('ball').setStyle('-moz-transition-duration', '.2s');
+			$('ball').setStyle('-webkit-transition-duration', '.2s');
+		}, 1000);
+		
 	},
 	gameOver: function(){
 		App.running = false;
