@@ -95,6 +95,7 @@ physics = {
 				App.state.lives --;
 				lives.innerHTML = App.state.lives;
 				App.stop();
+				
 			}
 			
 //			ppy = field.height-ball.height-pad.height+5
