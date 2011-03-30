@@ -84,7 +84,7 @@ body {
 }
 .p7 p{
 	background-color: #c66b43;
-    box-shadow: 1px 1px #ab5c3a, 2px 2px #ab5c3a, 3px 3px #ab5c3a, 3px 3px 4px rgba(0, 0, 0, .6);
+    box-shadow: 1px 1px #b5623d, 2px 2px #b5623d, 3px 3px #b5623d, 3px 3px 4px rgba(0, 0, 0, .6);
 }
 .p5 p{
 	background-color: #EDA568;
@@ -144,7 +144,7 @@ body {
 }
 #info #about{
 	font: bold 11pt/1.2 'PT Serif', sans-serif;
-	/*color: #fBbB86;*/
+	color: #fBbB86;
 	text-shadow:none;
 	text-align: left;
 	height: 72pt;

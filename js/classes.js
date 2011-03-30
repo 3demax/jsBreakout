@@ -2,7 +2,9 @@
 function Keyboard(){
     this.key = {
         37: 'left',
-        39: 'right'
+        39: 'right',
+		32: 'space',
+		13: 'enter'
     }
 	this.pressed = {
 		'left': false,
@@ -153,6 +155,7 @@ function Display(){
 		var closeButton = '\n<button onclick=\"javascript:this.parentNode.style.display = \'none\'\">Close</button>';
 		if(clsbtn) msg += closeButton;
 		messageBox.innerHTML = msg;
+		App.stop();
 		messageBox.style.display = 'table-cell';
 	}
 	this.clear = function(){
@@ -193,17 +196,17 @@ function Stack(){
 		];
 	this.add = function(item){
 		this.items.push(item);
-		for (i = this.items.length - 1; i > 0; i--){
-			for (j = 0; j < i; j++){
-				if (this.items[j].r > this.items[j + 1].r){
+	}
+	this.min = function(index){
+		for (k = this.items.length - 1; k > 0; k--) {
+			for (j = 0; j < k; j++) {
+				if (this.items[j].r > this.items[j + 1].r) {
 					m = this.items[j];
 					this.items[j] = this.items[j + 1];
 					this.items[j + 1] = m;
 				}
 			}
-		}
-	}
-	this.min = function(index){
+		}	
 		return this.items[index];
 	}
 	

@@ -41,6 +41,25 @@ App = {
 		document.addEventListener('click', function(){
 			if (!App.running) App.restart();
 		},false);
+		document.addEventListener('keypress', function(event){
+			if (!App.running && (kbd.isPressed('enter') || kbd.isPressed('space'))) App.restart();
+		}, false);
+		/*function test(){
+			teststack = new Stack();
+			teststack.add({x: 55, y: 150, position: 'horizontal', r: 6});
+			teststack.add({x: 5, y: 15, position: 'horizontal', r: 3});
+			teststack.add({x: 44, y: 444, position: 'horizontal', r:4});
+			teststack.add({x: 55, y: 150, position: 'horizontal', r:4});
+			for (i = 0; i < teststack.items.length; i++) 
+				App.say(teststack.min(i).r + ': ' + teststack.min(i).x + ', ' + teststack.min(i).y);
+			App.say("==========");
+			App.say(teststack.min(0).r);
+			App.say(teststack.min(1).r);
+			App.say(teststack.min(2));
+			
+		}
+		test();
+		*/
 	},
 
 	// main game cycle
@@ -89,6 +108,6 @@ App = {
 		App.running = false;
 		App.state.lives = 5;
 		App.state.points = 0;
-		display.message("You've lost. Click to play again.", false);
+		display.message("Click to play again.", false);
 	}
 };
