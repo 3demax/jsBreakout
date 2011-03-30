@@ -7,8 +7,8 @@ function solve(x1, y1, x2, y2, bx, by, dx, dy)
 	det1 = -C1*B2 + B1*C2;
 	det2 = -C2*A1 + A2*C1;
 	//hey, those lines shouldn't be parallel there!
-	x = det1/det;
-	y = det2/det;
+	x = Math.round(det1/det);
+	y = Math.round(det2/det);
 	return [x,y]
 }
 
@@ -75,23 +75,23 @@ physics = {
 			var by = ball.y
 			var px = ball.px
 			var py = ball.py
-			if (ball.speed.y < 0){
+//			if (ball.speed.y < 0){
 //				if (ball.speed.x > 0)
 //				{
 //					var bx = ball.x + ball.width;
-//					var by = ball.y;
 //					var px = ball.px + ball.width;
 //				}
-				bx = ball.x + ball.width/2;
-			} else {
-				by = ball.y + ball.height;
-				if (ball.speed.x > 0)
-				{
-					var bx = ball.x + ball.width;
-					var px = ball.px + ball.width;
-//					var py = ball.y + ball.height;
-				}
-			}
+////				bx = ball.x + ball.width/2;
+//			} 
+//			else {
+//				by = ball.y + ball.height;
+//				if (ball.speed.x > 0)
+//				{
+//					var bx = ball.x + ball.width;
+//					var px = ball.px + ball.width;
+////					var py = ball.y + ball.height;
+//				}
+//			}
 			
 			brickTime(bx, by, px, py);			
 //			ball.ppx = 0
@@ -167,10 +167,26 @@ physics = {
 	
 }
 
-	//All in all, it's just another break in the wall
+	//All in all, it's just another brick in the wall
 	brickTime = function(bx, by, px, py)
 	{
 //		App.say("args: "+bx+" "+by+" "+px+" "+py)
+//		if (ball.speed.y < 0){
+//			if (ball.speed.x > 0)
+//			{
+//				var bx = ball.x + ball.width;
+//				var px = ball.px + ball.width;
+//			}
+////				bx = ball.x + ball.width/2;
+//		} else {
+//			by = ball.y + ball.height;
+//			if (ball.speed.x > 0)
+//			{
+//				var bx = ball.x + ball.width;
+//				var px = ball.px + ball.width;
+////					var py = ball.y + ball.height;
+//			}
+//		}
 		this.stack = new Stack()
 		for (i = 1; i <= 3; i++)
 		{
@@ -197,26 +213,30 @@ physics = {
 			}
 		}
 		ans = this.stack.min(0);
-		hitId = Bricks.getId(Math.round(ans.x),Math.round(ans.y)-1);
-		App.say(stack.items);
-		App.say(ans.x + " " + ans.y + " " + ans.r + " hitId " + hitId);
-		App.stop();
+		if ( typeof(ans) != "undefined" ){
+			hitId = Bricks.getId(Math.round(ans.x)+1,Math.round(ans.y)-1);
+			App.say(stack.items);
+			App.say(ans.x + " " + ans.y + " " + ans.r + " hitId " + hitId + " stack.counter=" + stack.counter);
+		}
+//		App.stop();
 //		App.say("hitId="+hitId);
 		
 		tries = 0;
-//		while (	
-//				(
-//					( typeof(hitId) === "undefined" ) ||
-//					(bricks[hitId].hitted)
-//				) && 
-//				(tries <= stack.counter)
-//		   	  )
-//		{
-//			App.say("tries ++")
-//			tries++;
-//			ans = stack.min(tries);
-//			hitId = Bricks.getId(Math.round(ans.x)+1,Math.round(ans.y)-1);
-//		}
+		while (	
+				(tries < stack.counter-1) &&
+				(
+					( typeof(hitId) == "undefined" ) ||
+					(bricks[hitId].hitted)
+				)
+		   	  )
+		{
+			App.say(tries + " try");
+			tries++;
+			ans = stack.min(tries);
+			if ( ans.r > Math.sqrt(Math.pow(ball.speed.x,2) + Math.pow(ball.speed.y,2)) )
+				break;
+			hitId = Bricks.getId(Math.round(ans.x)+1,Math.round(ans.y)-1);
+		}
 		if ( (!(typeof(hitId)=="undefined")) && (!bricks[hitId].hitted)) 
 		{
 //			App.say("id=\"" + bricks[hitId].hitted + '\" hitId=' + hitId);
@@ -225,13 +245,15 @@ physics = {
 			App.say("==============");
 			if (ans.position == "vertical") 
 			{
+				App.say("vertical")
 				ball.speed.x = -ball.speed.x;
+				ball.ppx = ans.x;
 			}
 			if (ans.position == "horizontal") 
 			{
+				App.say("horizontal")
 				ball.speed.y = -ball.speed.y;
-				ball.ppy = ans.y+22;
-				ball.ppx = ans.x;
+				ball.ppy = ans.y;
 			}
 		}
 	}

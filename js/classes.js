@@ -113,7 +113,7 @@ function Brick(id, type){
 	this.hit = function(){
 		if (document.getElementById(this.id)) {
 			this.hitted = true;
-			playSound("brick-low.wav", 0);
+			playSound("brick.wav", 0);
 			document.getElementById(this.id).innerHTML = "";
 			document.getElementById(this.id).id = "";
 			switch (type) {
@@ -196,7 +196,7 @@ function Ball()
 }
 
 function Stack(){
-	this.counter == 0;
+	this.counter = 0;
 	this.items = [
 			/*
 			 * test values 
