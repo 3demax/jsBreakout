@@ -12,10 +12,16 @@ function solve(x1, y1, x2, y2, bx, by, dx, dy)
 	return [x,y]
 }
 
+function randomAngle(){
+	var min = Math.PI / 4;
+	var max = Math.PI * 0.75;
+		return (Math.random() * (max - min) + min);
+}
+
 function getSpeedProjections(speed, angle){
-	var x = (speed * Math.cos(angle));
-	var y = (speed * Math.sin(angle));
-	return [x, y]
+	var x = Math.round(speed * Math.cos(angle));
+	var y = Math.round(speed * Math.sin(angle));
+	return [x, y, angle]
 }
 
 function intersects(x1, y1, x2, y2, bx, by, dx, dy)
