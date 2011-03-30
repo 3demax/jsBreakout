@@ -174,7 +174,14 @@ function Display(){
 }
 function Ball()
 {
-	this.speed = {x : 25, y :30};
+	/*this.v = 60;
+	var initangle = randomAngle();
+	this.speed = {
+		x : getSpeedProjections(this.v, initangle)[0],
+		y : getSpeedProjections(this.v, initangle)[1]
+	};
+	App.say(this.speed.x + ' ' + this.speed.y);*/
+	this.speed = {x: 50, y: 50};
 	this.element = document.getElementById("ball");
 	var element = this.element;
 	this.left = parseFloat(window.getComputedStyle(element, null).getPropertyValue("left"));
