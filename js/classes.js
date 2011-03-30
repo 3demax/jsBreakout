@@ -2,7 +2,9 @@
 function Keyboard(){
     this.key = {
         37: 'left',
-        39: 'right'
+        39: 'right',
+		32: 'space',
+		13: 'enter'
     }
 	this.pressed = {
 		'left': false,
@@ -109,6 +111,9 @@ function Brick(id, type){
 	}
 	this.hit = function(){
 		if (document.getElementById(this.id)) {
+			//sound.src = "img/brick.wav";
+			//sound.play();
+			playSound("brick.wav", 0);
 			document.getElementById(this.id).innerHTML = "";
 			document.getElementById(this.id).id = "";
 			switch (type) {
@@ -163,6 +168,7 @@ function Display(){
 		var closeButton = '\n<button onclick=\"javascript:this.parentNode.style.display = \'none\'\">Close</button>';
 		if(clsbtn) msg += closeButton;
 		messageBox.innerHTML = msg;
+		App.stop();
 		messageBox.style.display = 'table-cell';
 	}
 	this.clear = function(){
@@ -205,21 +211,30 @@ function Stack(){
 	this.add = function(item){
 		this.items.push(item);
 		this.counter ++;
-		//App.say(item.x + " " + item.y + " " + item.r)
 	}
+	var prev;
 	this.min = function(){
-		var radii=[];
-		for (i=0;i<this.items.length;i++){
-			radii.push(this.items[i].r);
+		for (k = this.items.length - 1; k > 0; k--) {
+			for (j = 0; j < k; j++) {
+				if (this.items[j].r > this.items[j + 1].r) {
+					m = this.items[j];
+					this.items[j] = this.items[j + 1];
+					this.items[j + 1] = m;
+				}
+			}
 		}
-		rmin = radii.sort()[0];
-		for (i=0;i<this.items.length;i++){
-			if (this.items[i].r === rmin){
+		for (var i = 0; i < this.items.length; i++){
+			if (this.items[i] != prev){
+				prev = this.items[i];
 				return this.items[i];
-				break;
+				break
 			}
 		}
 	}
 }
 
-
+function playSound(file, timeout){
+	var player = document.getElementById("player");
+	player.src = "sounds/"+file;
+	setTimeout(player.play(), timeout);
+}

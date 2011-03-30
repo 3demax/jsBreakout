@@ -62,7 +62,6 @@ physics = {
 		ball.ppx = ball.px = ball.x + ball.speed.x;
 		ball.ppy = ball.py = ball.y + ball.speed.y;
 //		App.say("==== start ==== \n" + "bx=" + ball.x + " by=" + ball.y)
-
 		if ( (ball.py < 66) )//|| (ball.y < 66) )
 		{
 //			App.say("brickTime");
@@ -96,23 +95,27 @@ physics = {
 			App.say("py < 0");
 			ball.ppy = 0
 			ball.speed.y = -ball.speed.y
+			playSound("wall.wav", App.cycleDuration *3);
 		}
 		
 		if ( (ball.px < 0) && (ball.speed.x < 0) ){
 //			App.say("px < 0");
 			ball.ppx = 0
 			ball.speed.x = -ball.speed.x
+			playSound("wall-alt-2.wav", App.cycleDuration *3);
 		}
 
 		if ( (ball.px > field.width-ball.width) && (ball.speed.x > 0) ) {
 //			App.say("px > width");
 			ball.ppx = field.width-ball.width
 			ball.speed.x = -ball.speed.x
+			playSound("wall-alt-2.wav", App.cycleDuration *3);
 		}
 
 		if ( (ball.py > field.height-ball.height-pad.height) && (ball.speed.y > 0) ) {
 //			App.say("py > height");
-			this.reflect()
+			this.reflect();
+			
 		}
 
 		ball.x = ball.ppx
@@ -138,7 +141,8 @@ physics = {
 		{
 			ball.ppy = h+5
 			ball.speed.y = -ball.speed.y
-		}		
+			playSound("wall-alt-2.wav", App.cycleDuration *3);
+		}
 		else
 		{
 //			App.say("You loose.")
@@ -185,7 +189,7 @@ physics = {
 				this.stack.add({x: ans[0] , y: ans[1], position: 'vertical', r: radius });
 			}
 		}
-		ans = stack.min();
+		ans = this.stack.min();
 		hitId = Bricks.getId(Math.round(ans.x),Math.round(ans.y)-1);
 //		App.say("hitId="+hitId);
 		
