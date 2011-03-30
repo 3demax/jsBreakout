@@ -40,7 +40,7 @@ function Field(){
 	this.height = parseFloat(window.getComputedStyle(field, null).getPropertyValue("height"));
 	this.left = parseFloat(window.getComputedStyle(field, null).getPropertyValue("left"));
 	this.fill = function(){
-		bricks={}
+		bricks=[]
 		for ( id = 0; id < 10; id++ ) bricks[id] = new Brick(id, "p7");
 		for ( id = 10; id < 20; id++ ) bricks[id] = new Brick(id, "p5");
 		for ( id = 20; id < 30; id++ ) bricks[id] = new Brick(id, "p3");
@@ -110,6 +110,9 @@ function Brick(id, type){
 	}
 	this.hit = function(){
 		if (document.getElementById(this.id)) {
+			//sound.src = "img/brick.wav";
+			//sound.play();
+			playSound("brick.wav", 0);
 			document.getElementById(this.id).innerHTML = "";
 			document.getElementById(this.id).id = "";
 			switch (type) {
@@ -130,6 +133,15 @@ function Brick(id, type){
 		bricks[this.parentNode.id].hit();
 	}
 }
+
+Bricks = {
+	getId : function(ix,iy){
+		for (i=0; i<bricks.length; i++){
+			if (bricks[i].contains(ix,iy)) return i;
+		}
+	},
+}
+
 function Display(){
 	this.countdown = function(){
 		var shots = ["3", "2", "1", "GO", ""];
@@ -183,6 +195,7 @@ function Ball()
 }
 
 function Stack(){
+	this.counter == 0;
 	this.items = [
 			/*
 			 * test values 
@@ -196,8 +209,10 @@ function Stack(){
 		];
 	this.add = function(item){
 		this.items.push(item);
+		this.counter ++;
 	}
-	this.min = function(index){
+	var prev;
+	this.min = function(){
 		for (k = this.items.length - 1; k > 0; k--) {
 			for (j = 0; j < k; j++) {
 				if (this.items[j].r > this.items[j + 1].r) {
@@ -206,8 +221,19 @@ function Stack(){
 					this.items[j + 1] = m;
 				}
 			}
-		}	
-		return this.items[index];
+		}
+		for (var i = 0; i < this.items.length; i++){
+			if (this.items[i] != prev){
+				prev = this.items[i];
+				return this.items[i];
+				break
+			}
+		}
 	}
-	
+}
+
+function playSound(file, timeout){
+	var player = document.getElementById("player");
+	player.src = "sounds/"+file;
+	setTimeout(player.play(), timeout);
 }
