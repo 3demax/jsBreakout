@@ -112,10 +112,8 @@ function Brick(id, type){
 	}
 	this.hit = function(){
 		if (document.getElementById(this.id)) {
-			//sound.src = "img/brick.wav";
-			//sound.play();
 			this.hitted = true;
-			playSound("brick.wav", 0);
+			playSound("brick-low.wav", 0);
 			document.getElementById(this.id).innerHTML = "";
 			document.getElementById(this.id).id = "";
 			switch (type) {
@@ -214,8 +212,8 @@ function Stack(){
 		this.items.push(item);
 		this.counter ++;
 	}
-	var prev;
-	this.min = function(){
+	//var prev;
+	this.min = function(index){
 		for (k = this.items.length - 1; k > 0; k--) {
 			for (j = 0; j < k; j++) {
 				if (this.items[j].r > this.items[j + 1].r) {
@@ -225,13 +223,14 @@ function Stack(){
 				}
 			}
 		}
-		for (var i = 0; i < this.items.length; i++){
+		return this.items[index];
+		/*for (var i = 0; i < this.items.length; i++){
 			if (this.items[i] != prev){
 				prev = this.items[i];
 				return this.items[i];
-				break
+				//break
 			}
-		}
+		}*/
 	}
 }
 

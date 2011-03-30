@@ -49,17 +49,19 @@ App = {
 			teststack.add({x: 55, y: 150, position: 'horizontal', r: 6});
 			teststack.add({x: 5, y: 15, position: 'horizontal', r: 3});
 			teststack.add({x: 44, y: 444, position: 'horizontal', r:4});
-			teststack.add({x: 55, y: 150, position: 'horizontal', r:4});
-			for (i = 0; i < teststack.items.length; i++) 
-				App.say(teststack.min(i).r + ': ' + teststack.min(i).x + ', ' + teststack.min(i).y);
+			teststack.add({x: 55, y: 150, position: 'horizontal', r:7});
+			//for (i = 0; i < teststack.items.length; i++) 
+				//App.say(teststack.min(i).r + ': ' + teststack.min(i).x + ', ' + teststack.min(i).y);
 			App.say("==========");
 			App.say(teststack.min(0).r);
 			App.say(teststack.min(1).r);
-			App.say(teststack.min(2));
+			App.say(teststack.min(2).r);
+			App.say(teststack.min(3).r);
 			
 		}
 		test();
 		*/
+		//App.say(getSpeedProjections(30, 0));
 	},
 
 	// main game cycle

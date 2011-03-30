@@ -12,6 +12,12 @@ function solve(x1, y1, x2, y2, bx, by, dx, dy)
 	return [x,y]
 }
 
+function getSpeedProjections(speed, angle){
+	var x = (speed * Math.cos(angle));
+	var y = (speed * Math.sin(angle));
+	return [x, y]
+}
+
 function intersects(x1, y1, x2, y2, bx, by, dx, dy)
 {
 	ans = solve(x1, y1, x2, y2, bx, by, dx, dy)
@@ -96,21 +102,21 @@ physics = {
 			App.say("py < 0");
 			ball.ppy = 0
 			ball.speed.y = -ball.speed.y
-			playSound("wall.wav", App.cycleDuration *3);
+			playSound("wall.wav", App.cycleDuration);
 		}
 		
 		if ( (ball.px < 0) && (ball.speed.x < 0) ){
 //			App.say("px < 0");
 			ball.ppx = 0
 			ball.speed.x = -ball.speed.x
-			playSound("wall-alt-2.wav", App.cycleDuration *3);
+			playSound("wall.wav", App.cycleDuration);
 		}
 
 		if ( (ball.px > field.width-ball.width) && (ball.speed.x > 0) ) {
 //			App.say("px > width");
 			ball.ppx = field.width-ball.width
 			ball.speed.x = -ball.speed.x
-			playSound("wall-alt-2.wav", App.cycleDuration *3);
+			playSound("wall.wav", App.cycleDuration);
 		}
 
 		if ( (ball.py > field.height-ball.height-pad.height) && (ball.speed.y > 0) ) {
@@ -142,7 +148,7 @@ physics = {
 		{
 			ball.ppy = h+5
 			ball.speed.y = -ball.speed.y
-			playSound("wall-alt-2.wav", App.cycleDuration *3);
+			playSound("wall.wav", App.cycleDuration);
 		}
 		else
 		{
@@ -190,7 +196,7 @@ physics = {
 				this.stack.add({x: ans[0] , y: ans[1], position: 'vertical', r: radius });
 			}
 		}
-		ans = this.stack.min();
+		ans = this.stack.min(0);
 		hitId = Bricks.getId(Math.round(ans.x),Math.round(ans.y)-1);
 		App.say(stack.items);
 		App.say(ans.x + " " + ans.y + " " + ans.r + " hitId " + hitId);
