@@ -54,6 +54,7 @@ function Pad(){
 	var racket = document.getElementById("racket");
 	this.width = parseFloat(window.getComputedStyle(racket, null).getPropertyValue("width"));
 	this.height = parseFloat(window.getComputedStyle(racket, null).getPropertyValue("height"));
+	this.top = parseFloat(window.getComputedStyle(racket, null).getPropertyValue("top"));
 	this.path = field.width - this.width;
 	var step = this.speed.maximum * App.cycleDuration / 1000;
 	var move = step;
@@ -102,6 +103,7 @@ function Brick(id, type){
     var brick = document.createElement("p");
     brickCell.appendChild(brick);
     layer.appendChild(brickCell);
+    this.hitted = false;
 	this.contains = function(x, y){
 		return (x > brickCell.offsetLeft &&
 		 (x < brickCell.offsetLeft + brickCell.offsetWidth) &&
@@ -110,7 +112,8 @@ function Brick(id, type){
 	}
 	this.hit = function(){
 		if (document.getElementById(this.id)) {
-			playSound("brick-low.wav", 0);
+			this.hitted = true;
+			playSound("brick.wav", 0);
 			document.getElementById(this.id).innerHTML = "";
 			document.getElementById(this.id).id = "";
 			switch (type) {
@@ -200,7 +203,7 @@ function Ball()
 }
 
 function Stack(){
-	this.counter == 0;
+	this.counter = 0;
 	this.items = [
 			/*
 			 * test values 

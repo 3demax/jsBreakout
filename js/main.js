@@ -77,11 +77,18 @@ App = {
 	// main game cycle
 	update : function()
 	{
-		pad.move();
 		points.innerHTML = App.state.points;
 		lives.innerHTML = App.state.lives;
+		if (App.state.points === 150){
+			App.stop();
+			points.innerHTML = App.state.points;
+			display.message("Win win win!", false);
+//			App.state.lives = 5;
+//			App.state.points = 0;
+			return;
+		}
+		pad.move();
 		physics.step();
-		
 	},
 	state: {
 		points: 0,
@@ -91,6 +98,7 @@ App = {
 		ball.set( field.width/2 - ball.width/2,  field.height-ball.height-pad.height);
 		ball.speed.y = -Math.abs(ball.speed.y);
 		ball.speed.x = (Math.round(Math.random())*2-1)*Math.abs(ball.speed.x);
+		ball.speed.x = -Math.abs(ball.speed.x);
 		pad.set( field.width/2 - pad.width/2 );
 	},
 	start : function(){
@@ -108,11 +116,11 @@ App = {
 		App.reset();
 		App.update();
 		setTimeout(function(){
-			App.start();
 			$('ball').setStyle('transition-duration', '.2s');
 			$('ball').setStyle('-o-transition-duration', '.2s');
 			$('ball').setStyle('-moz-transition-duration', '.2s');
 			$('ball').setStyle('-webkit-transition-duration', '.2s');
+			App.start();
 		}, 1000);
 		
 	},
