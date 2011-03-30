@@ -1,5 +1,5 @@
 App = {
-	debugMode : true,
+	debugMode : false,
 	cycleDuration: 200, //in miliseconds
 	running: true,
 	say : function(info)
@@ -46,11 +46,18 @@ App = {
 	// main game cycle
 	update : function()
 	{
-		pad.move();
 		points.innerHTML = App.state.points;
 		lives.innerHTML = App.state.lives;
+		if (App.state.points === 30){
+			App.stop();
+			points.innerHTML = App.state.points;
+			display.message("That's all for now.<br>Thank's for playing.", false);
+//			App.state.lives = 5;
+//			App.state.points = 0;
+			return;
+		}
+		pad.move();
 		physics.step();
-		
 	},
 	state: {
 		points: 0,
@@ -77,11 +84,11 @@ App = {
 		App.reset();
 		App.update();
 		setTimeout(function(){
-			App.start();
 			$('ball').setStyle('transition-duration', '.2s');
 			$('ball').setStyle('-o-transition-duration', '.2s');
 			$('ball').setStyle('-moz-transition-duration', '.2s');
 			$('ball').setStyle('-webkit-transition-duration', '.2s');
+			App.start();
 		}, 1000);
 		
 	},
@@ -89,6 +96,6 @@ App = {
 		App.running = false;
 		App.state.lives = 5;
 		App.state.points = 0;
-		display.message("You've lost. Click to play again.", false);
+		display.message("Click to play again.", false);
 	}
 };

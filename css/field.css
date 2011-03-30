@@ -39,6 +39,7 @@ body {
 	top:25px;
 	z-index:2;
 	display: table;
+	cursor:none;
 }
 #message{
 	font: 36pt / 1 "League Gothic";
@@ -144,7 +145,7 @@ body {
 }
 #info #about{
 	font: bold 11pt/1.2 'PT Serif', sans-serif;
-	/*color: #fBbB86;*/
+	color: #fBbB86;
 	text-shadow:none;
 	text-align: left;
 	height: 72pt;

@@ -52,6 +52,7 @@ function Pad(){
 	var racket = document.getElementById("racket");
 	this.width = parseFloat(window.getComputedStyle(racket, null).getPropertyValue("width"));
 	this.height = parseFloat(window.getComputedStyle(racket, null).getPropertyValue("height"));
+	this.top = parseFloat(window.getComputedStyle(racket, null).getPropertyValue("top"));
 	this.path = field.width - this.width;
 	var step = this.speed.maximum * App.cycleDuration / 1000;
 	var move = step;
