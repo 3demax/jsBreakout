@@ -103,6 +103,7 @@ function Brick(id, type){
     var brick = document.createElement("p");
     brickCell.appendChild(brick);
     layer.appendChild(brickCell);
+    this.hitted = false;
 	this.contains = function(x, y){
 		return (x > brickCell.offsetLeft &&
 		 (x < brickCell.offsetLeft + brickCell.offsetWidth) &&
@@ -113,6 +114,7 @@ function Brick(id, type){
 		if (document.getElementById(this.id)) {
 			//sound.src = "img/brick.wav";
 			//sound.play();
+			this.hitted = true;
 			playSound("brick.wav", 0);
 			document.getElementById(this.id).innerHTML = "";
 			document.getElementById(this.id).id = "";

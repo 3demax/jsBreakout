@@ -1,5 +1,5 @@
 App = {
-	debugMode : false,
+	debugMode : true,
 	cycleDuration: 200, //in miliseconds
 	running: true,
 	say : function(info)
@@ -67,10 +67,10 @@ App = {
 	{
 		points.innerHTML = App.state.points;
 		lives.innerHTML = App.state.lives;
-		if (App.state.points === 30){
+		if (App.state.points === 150){
 			App.stop();
 			points.innerHTML = App.state.points;
-			display.message("That's all for now.<br>Thank's for playing.", false);
+			display.message("Win win win!", false);
 //			App.state.lives = 5;
 //			App.state.points = 0;
 			return;
@@ -86,6 +86,7 @@ App = {
 		ball.set( field.width/2 - ball.width/2,  field.height-ball.height-pad.height);
 		ball.speed.y = -Math.abs(ball.speed.y);
 		ball.speed.x = (Math.round(Math.random())*2-1)*Math.abs(ball.speed.x);
+		ball.speed.x = -Math.abs(ball.speed.x);
 		pad.set( field.width/2 - pad.width/2 );
 	},
 	start : function(){
