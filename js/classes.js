@@ -113,7 +113,7 @@ function Brick(id, type){
 	this.hit = function(){
 		if (document.getElementById(this.id)) {
 			this.hitted = true;
-			playSound("brick.wav", 0);
+			playSound("brick-low.wav", 0);
 			document.getElementById(this.id).innerHTML = "";
 			document.getElementById(this.id).id = "";
 			switch (type) {
@@ -184,7 +184,7 @@ function Ball()
 		y : getSpeedProjections(this.v, initangle)[1]
 	};
 	App.say(this.speed.x + ' ' + this.speed.y);*/
-	this.speed = {x: 50, y: 50};
+	this.speed = {x: 25, y: 30};
 	this.element = document.getElementById("ball");
 	var element = this.element;
 	this.left = parseFloat(window.getComputedStyle(element, null).getPropertyValue("left"));
@@ -244,5 +244,7 @@ function Stack(){
 function playSound(file, timeout){
 	var player = document.getElementById("player");
 	player.src = "sounds/"+file;
-	setTimeout(player.play(), timeout);
+	setTimeout(function(){
+		player.play()	
+	}, timeout);
 }

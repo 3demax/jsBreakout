@@ -44,7 +44,7 @@ App = {
 			ms.setShift();
 		},false);
 		document.addEventListener('click', function(){
-			if (!App.running && App.state.lives === 0) App.load();
+			if (!App.running && (App.state.lives === 0 || App.state.points === 150)) App.load();
 		},false);
 		document.addEventListener('keypress', function(event){
 			if (
@@ -54,24 +54,6 @@ App = {
 				App.state.lives === 0
 			) App.load();
 		}, false);
-		/*function test(){
-			teststack = new Stack();
-			teststack.add({x: 55, y: 150, position: 'horizontal', r: 6});
-			teststack.add({x: 5, y: 15, position: 'horizontal', r: 3});
-			teststack.add({x: 44, y: 444, position: 'horizontal', r:4});
-			teststack.add({x: 55, y: 150, position: 'horizontal', r:7});
-			//for (i = 0; i < teststack.items.length; i++) 
-				//App.say(teststack.min(i).r + ': ' + teststack.min(i).x + ', ' + teststack.min(i).y);
-			App.say("==========");
-			App.say(teststack.min(0).r);
-			App.say(teststack.min(1).r);
-			App.say(teststack.min(2).r);
-			App.say(teststack.min(3).r);
-			
-		}
-		test();
-		*/
-		//App.say(getSpeedProjections(30, randomAngle()));
 	},
 
 	// main game cycle
@@ -83,6 +65,7 @@ App = {
 			App.stop();
 			points.innerHTML = App.state.points;
 			display.message("Win win win!", false);
+			
 //			App.state.lives = 5;
 //			App.state.points = 0;
 			return;
