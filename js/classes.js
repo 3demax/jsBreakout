@@ -41,10 +41,10 @@ function Field(){
 	this.left = parseFloat(window.getComputedStyle(field, null).getPropertyValue("left"));
 	this.fill = function(){
 		bricks=[]
+		document.getElementById("bricks-layer").innerHTML = "";
 		for ( id = 0; id < 10; id++ ) bricks[id] = new Brick(id, "p7");
 		for ( id = 10; id < 20; id++ ) bricks[id] = new Brick(id, "p5");
 		for ( id = 20; id < 30; id++ ) bricks[id] = new Brick(id, "p3");
-		
 	}
 }
 
