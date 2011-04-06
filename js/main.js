@@ -20,7 +20,7 @@ App = {
 		ball = new Ball();
 		
 		field.fill();
-		
+		App.reset();
 		App.start();
 		if (!App.debugMode) display.countdown();
 
@@ -85,10 +85,11 @@ App = {
 		if (App.state.points === 150){
 			App.stop();
 			points.innerHTML = App.state.points;
-			display.message("Win win win!", false);
-			
-//			App.state.lives = 5;
-//			App.state.points = 0;
+			display.message("Congratulations!<br>You've won", false);
+			return;
+		}
+		if (App.state.lives === 0) {
+			App.gameOver();
 			return;
 		}
 		pad.move();
@@ -101,6 +102,7 @@ App = {
 	reset : function(){
 		ball.set( field.width/2 - ball.width/2,  field.height-ball.height-pad.height);
 		pad.set( field.width/2 - pad.width/2 );
+		App.say("resetted");
 	},
 	start : function(){
 		display.clear();
@@ -126,7 +128,7 @@ App = {
 		
 	},
 	gameOver: function(){
-		App.running = false;
+		App.stop();
 		display.message("You've lost.<br>Click or press Enter to play again.", false);
 	}
 };

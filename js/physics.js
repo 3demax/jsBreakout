@@ -139,6 +139,8 @@ physics = {
 
 		ball.x = ball.ppx
 		ball.y = ball.ppy
+//		ball.x = ball.px
+//		ball.y = ball.py
 		ball.element.style.left = ball.x + 'px';
 		ball.element.style.top = ball.y + 'px';
 //		App.say("px=" + ball.px + " py=" + ball.py + "\n ==== end ====");
@@ -171,13 +173,10 @@ physics = {
 //			App.say("You loose.")
 			App.state.lives --;
 			lives.innerHTML = App.state.lives;
-			if (App.state.lives === 0) {
-					App.gameOver();
-				}else{
-					App.stop();
-					display.message('&nbsp;', false);
-					setTimeout(App.restart, 1000);
-			}
+			
+			App.stop();
+			display.message('&nbsp;', false);
+			setTimeout(App.restart, 1000);
 		}
 	},
 	
@@ -231,8 +230,8 @@ physics = {
 		ans = this.stack.min(0);
 		if ( typeof(ans) != "undefined" ){
 			hitId = Bricks.getId(Math.round(ans.x)+1,Math.round(ans.y)-1);
-			App.say(stack.items);
-			App.say(ans.x + " " + ans.y + " " + ans.r + " hitId " + hitId + " stack.counter=" + stack.counter);
+//			App.say(stack.items);
+//			App.say(ans.x + " " + ans.y + " " + ans.r + " hitId " + hitId + " stack.counter=" + stack.counter);
 		}
 //		App.stop();
 //		App.say("hitId="+hitId);
@@ -258,16 +257,16 @@ physics = {
 //			App.say("id=\"" + bricks[hitId].hitted + '\" hitId=' + hitId);
 			bricks[hitId].hit();
 //			App.say("id=\"" + bricks[hitId].hitted + '\" hitId=' + hitId);
-			App.say("==============");
+//			App.say("==============");
 			if (ans.position == "vertical") 
 			{
-				App.say("vertical")
+//				App.say("vertical")
 				ball.speed.x = -ball.speed.x;
 				ball.ppx = ans.x;
 			}
 			if (ans.position == "horizontal") 
 			{
-				App.say("horizontal")
+//				App.say("horizontal")
 				ball.speed.y = -ball.speed.y;
 				ball.ppy = ans.y;
 			}
