@@ -16,42 +16,43 @@ body {
     overflow: hidden;
     background: #87542e url(../img/bg-darker.png) repeat left top;
     box-shadow: inset 1px 1px 3px rgba(0, 0, 0, .3);
-    border-radius: 2px;
-	border-bottom:1px solid rgba(255,255,255,.3);
+    border-radius: 3px;
+	border-bottom: 1px solid rgba(255,255,255,.3);
 }
 #ball {
     width: 32px;
     height: 32px;
-	border:1px solid rgba(255,255,255, .05);
+	border: 1px solid rgba(255,255,255, .05);
     position: relative;
-	top:420px;
-	left:284px;
+	top: 420px;
+	left: 284px;
     border-radius: 16px;
     background-color: #d20;
 	box-shadow: 1px 1px #c00, 2px 2px #c00, 3px 2px #c00, 3px 3px 4px rgba(0, 0, 0, .6);
 }
 #display{
     box-shadow: inset 0 0 4px rgba(0, 0, 0, .4);
-	border-radius:3px;
+	border-radius: 3px;
 	height: inherit;
 	width: inherit;
 	position: absolute;
-	top:25px;
-	z-index:2;
+	top: 25px;
+	z-index: 2;
 	display: table;
-	cursor:none;
 }
 #message{
-	font: 36pt / 1 "League Gothic";
+	font: 36pt / 1 "League Gothic", sans-serif;
     color: #ddd;
     text-shadow: 1px 1px #999;
-	background: rgba(0,0,0,.3);
+	/*background: rgba(0,0,0,.1);*/
+	box-shadow: inset 0 0 300px rgba(0,0,0,.4);
+	border-radius: 3px;
 	text-align: center;
 	vertical-align: middle;
 	display: none;
 }
 #message button{
-	font:14pt/1.3 'League Gothic', sans-serif;
+	font: 14pt/1.3 'League Gothic', sans-serif;
 	text-transform: uppercase;
 	display: block;
 	margin: 0 auto;
@@ -62,9 +63,9 @@ body {
 	height: inherit;
 	width: inherit;
 	position: absolute;
-	z-index:1;
-	overflow:hidden;
-	border-radius:2px;
+	z-index: 1;
+	overflow: hidden;
+	border-radius: 3px;
 }
 .brick{
 	width:60px;
@@ -72,12 +73,9 @@ body {
 	float: left;
 }
 .brick p{
-	font:50%/2.4 sans-serif;
-	text-align: center;
-	color:#eee;
-	width:58px;
-	height:20px;
-	border:1px  solid rgba(255,255,255,.05);
+	width: 58px;
+	height: 20px;
+	border: 1px  solid rgba(255,255,255,.05);
 }
 .p3 p{
 	background-color: #a33722;
@@ -105,15 +103,49 @@ body {
 				2px 2px 0px rgba(0, 0, 0, .6);
     background: #888;
 }
-#ball, #racket, #name-request{
+#ball, #racket{
     transition: all .2s linear;
     -webkit-transition: all .2s linear;
-    -moz-transition: all .2s linear;
+    -moz-transition: all .24s linear;
+	/* Duration greater than App.cycleDuration somehow reduces FF4 problem.
+	 * Does not fix it though and adds extra crap. */
     -o-transition: all .2s linear;
-/*    transition: all .2s none;*/
-/*    -webkit-transition: all .2s none;*/
-/*    -moz-transition: all .2s none;*/
-/*    -o-transition: all .2s none;*/
+}
+#arrows{
+	width: 100%;
+	margin: 0 auto;
+	position: absolute;
+	top: 150px;
+	z-index: 2;
+	overflow: hidden; /* Oh, Opera :C */
+}
+#arrows button{
+	width: 120px;
+	height: 120px;
+	font: 24px/1.3 'League Gothic', sans-serif;
+	color: #DB9B66;
+	background: transparent url(../img/bg-brown.png) repeat left top;
+	border: 1px solid rgba(0,0,0,.6);
+	box-shadow: inset 0px 0px 1px rgba(0,0,0,0);
+	-webkit-transition: all .15s ease-in-out;
+	-moz-transition: all .15s ease-in-out;
+	-o-transition: all .15s ease-in-out;
+	transition: all .15s ease-in-out;
+}
+#arrows button:active, #arrows .pressed{
+    box-shadow: inset 1px 1px 20px rgba(0, 0, 0, .7);
+	border-bottom-color: rgba(255,255,255,.6);
+	border-right-color: rgba(255,255,255,.2);
+}
+#arrows #arrow-left{
+	float: left;
+	border-left: none;
+	border-radius: 0 5px 5px 0;
+}
+#arrows #arrow-right{
+	float: right;
+	border-right: none;
+	border-radius: 5px 0 0 5px;
 }
 #info {
     background: transparent url(../img/bg-brown.png) repeat left top;
@@ -131,7 +163,7 @@ body {
 	padding: 0 10px;
 }
 #info dd {
-    font: 72pt / 1 "League Gothic";
+    font: 72pt / 1 "League Gothic", sans-serif;
     color: #67a7db;
     text-shadow: 2px 2px #db9b66;
     clear: none;
@@ -140,7 +172,7 @@ body {
 }
 #info dt {
     color: #DB9B66;
-    font: 18pt / 1 "League Gothic", Georgia, serif;
+    font: 18pt / 1 "League Gothic", sans-serif;
     text-transform: uppercase;
 	margin-right:-100%;
 }
@@ -148,7 +180,7 @@ body {
     border-right-color:transparent;
 }
 #info #about{
-	font: bold 11pt/1.2 'PT Serif', sans-serif;
+	font: bold 11pt/1.2 'PT Serif', serif;
 	color: #fBbB86;
 	text-shadow:none;
 	text-align: left;

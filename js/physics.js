@@ -16,14 +16,18 @@ function randomAngle(){
 	var min = Math.PI / 4;
 	var max = Math.PI / 2.5;
 	var rndabs =  Math.random() * (max - min) + min;
-	var s = Math.random();
-	return (s/Math.abs(s))*rndabs
+	var sign = Math.round(Math.random()-1)*2+1;
+	return sign*rndabs
 }
 
 function getSpeedProjections(speed, angle){
 	var x = Math.round(speed * Math.cos(angle));
 	var y = Math.round(speed * Math.sin(angle));
 	return [x, y]
+}
+
+function addAngle(speedx, speedy, angle){
+	return getSpeedProjections(ball.v, Math.atan(speedy / speedx) + angle);
 }
 
 function intersects(x1, y1, x2, y2, bx, by, dx, dy)
@@ -145,7 +149,7 @@ physics = {
 			
 		var h = field.height-ball.height-pad.height;
 		//we predict that pad will be here
-		var padxx = Math.round( parseFloat(pad.left) + pad.speed.x*(h-ball.y)/(ball.py-ball.y) );
+		var padxx = Math.round(pad.left + pad.speed.x*(h-ball.y)/(ball.py-ball.y) );
 		var bw = ball.x + ball.width;
 //		App.say("pad.x=" + pad.left + "\npad.speed=" + pad.speed.x);
 //		App.say("padxx=" + padxx + "\nball.x=" + ball.x);
@@ -155,7 +159,11 @@ physics = {
 			)	
 		{
 			ball.ppy = h+5
-			ball.speed.y = -ball.speed.y
+			var newspeed = addAngle(ball.speed.x, ball.speed.y, -Math.PI / 2);
+			ball.speed.x = newspeed[0];
+			ball.speed.y = newspeed[1];
+			//ball.speed.y = -ball.speed.y;
+			App.say(newspeed + ' ' + ball.speed.x + ' ' + ball.speed.y);
 			playSound("wall.wav", App.cycleDuration);
 		}
 		else

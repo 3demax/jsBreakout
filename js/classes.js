@@ -7,8 +7,10 @@ function Keyboard(){
 		13: 'enter'
     }
 	this.pressed = {
-		'left': false,
-		'right': false
+		'left' : false,
+		'right': false,
+		'space': false,
+		'enter': false
 	}
     this.isPressed = function(keyName){
 		return this.pressed[keyName];
@@ -35,10 +37,10 @@ function Mouse(){
 }
 
 function Field(){
-	var field = document.getElementById("field");
-	this.width = parseFloat(window.getComputedStyle(field, null).getPropertyValue("width"));
-	this.height = parseFloat(window.getComputedStyle(field, null).getPropertyValue("height"));
-	this.left = parseFloat(window.getComputedStyle(field, null).getPropertyValue("left"));
+	this.source = document.getElementById("field");
+	this.width = parseFloat(window.getComputedStyle(this.source, null).getPropertyValue("width"));
+	this.height = parseFloat(window.getComputedStyle(this.source, null).getPropertyValue("height"));
+	this.left = parseFloat(window.getComputedStyle(this.source, null).getPropertyValue("left"));
 	this.fill = function(){
 		bricks=[]
 		document.getElementById("bricks-layer").innerHTML = "";
@@ -89,7 +91,9 @@ function Pad(){
 	}
 	this.speed.x = move;
 	this.set = function(x){ 
-		racket.style.left = x + 'px'
+		racket.style.left = x + 'px';
+		this.left = x;
+		//App.say(x);
 	}
 }
 
@@ -177,20 +181,18 @@ function Display(){
 }
 function Ball()
 {
-	/*this.v = 60;
+	this.v = 50;
 	var initangle = randomAngle();
 	this.speed = {
 		x : getSpeedProjections(this.v, initangle)[0],
 		y : getSpeedProjections(this.v, initangle)[1]
 	};
-	App.say(this.speed.x + ' ' + this.speed.y);*/
-	this.speed = {x: 25, y: 30};
+	App.say(this.speed.x + ' ' + this.speed.y);
 	this.element = document.getElementById("ball");
-	var element = this.element;
-	this.left = parseFloat(window.getComputedStyle(element, null).getPropertyValue("left"));
-	this.top = parseFloat(window.getComputedStyle(element, null).getPropertyValue("top"));
-	this.width = parseFloat(window.getComputedStyle(element, null).getPropertyValue("width"));
-	this.height = parseFloat(window.getComputedStyle(element, null).getPropertyValue("height"));
+	this.left = parseFloat(window.getComputedStyle(this.element, null).getPropertyValue("left"));
+	this.top = parseFloat(window.getComputedStyle(this.element, null).getPropertyValue("top"));
+	this.width = parseFloat(window.getComputedStyle(this.element, null).getPropertyValue("width"));
+	this.height = parseFloat(window.getComputedStyle(this.element, null).getPropertyValue("height"));
 	this.x = this.left; this.y = this.top;
 	this.px = this.x; this.py = this.y
 	this.set = function(x,y){
@@ -198,6 +200,7 @@ function Ball()
 		ball.y = y;
 		ball.element.style.left = x + 'px';
 		ball.element.style.top = y + 'px';
+		App.say('ball x: ' + ball.element.style.left + '; y: ' + ball.element.style.top);
 	}
 
 }
@@ -219,7 +222,6 @@ function Stack(){
 		this.items.push(item);
 		this.counter ++;
 	}
-	//var prev;
 	this.min = function(index){
 		for (k = this.items.length - 1; k > 0; k--) {
 			for (j = 0; j < k; j++) {
@@ -231,20 +233,14 @@ function Stack(){
 			}
 		}
 		return this.items[index];
-		/*for (var i = 0; i < this.items.length; i++){
-			if (this.items[i] != prev){
-				prev = this.items[i];
-				return this.items[i];
-				//break
-			}
-		}*/
 	}
 }
 
 function playSound(file, timeout){
 	var player = document.getElementById("player");
 	player.src = "sounds/"+file;
-	setTimeout(function(){
-		player.play()	
-	}, timeout);
+	if (App.sounds)
+		setTimeout(function(){
+			player.play()	
+		}, timeout);
 }
